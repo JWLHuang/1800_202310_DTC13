@@ -65,5 +65,3 @@ It has the following subfolders and files:
     /blah.css                #
 
 
-
-```
