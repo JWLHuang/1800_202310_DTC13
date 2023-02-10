@@ -5,7 +5,7 @@
 *---------------------------------------------
 */
 .bg-info {
-    background-color: #6bb36b !important;
+    background-color: #cad7b9 !important;
     /* some secondary colour */
 }
 
@@ -17,16 +17,23 @@
 .btn-primary {
     color: black;
     /* contrast to secondary colour */
-    font-size: 150%;
-    background-color: #ff9999;
+    /* font-size: 150%; */
+    background-color: #ffb366;
     /* some secondary colour */
-    border-color: #b36b6b;
+    border-color: #ffb366;
     /* some accent colour */
     border-width: thin
 }
 
+.btn-secondary {
+    color: white;
+    background-color: #979682;
+    border-color: #979682;
+    border-width: thin;
+}
+
 body {
-    background-color: #e6ffe6;
+    background-color: whitesmoke;
     /* some primary colour */
 }
 
