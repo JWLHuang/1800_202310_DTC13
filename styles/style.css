@@ -41,3 +41,8 @@ body {
     font-family: 'Quicksand', cursive;
     font-size: 2.25rem;
 }
+
+.product_text_size {
+
+    font-weight: 600;
+}
