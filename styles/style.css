@@ -4,6 +4,11 @@
 * to over-ride the default bootstrap ones
 *---------------------------------------------
 */
+
+* {
+    font-family: 'Quicksand';
+}
+
 .bg-info {
     background-color: #cad7b9 !important;
     /* some secondary colour */
@@ -47,16 +52,46 @@ body {
     font-weight: 600;
 }
 
-.product_image{
+.product_image {
     width: 30%;
     height: 65%;
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
-        }
+}
 
-.card_padding{
+.card_padding {
     padding: 0;
     margin-bottom: 0px;
-}  
+}
+
+.indexFooter {
+    background-color: #687169;
+    /* some secondary colour */
+    color: white;
+    /* contrast to secondary colour */
+}
+
+.indexHeading {
+    text-align: center;
+    font-size: 1.75rem;
+}
+
+.indexFooter p {
+    text-align: center;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+}
+
+footer a:hover {
+    background-color: #d0d9cd;
+    color: black;
+}
