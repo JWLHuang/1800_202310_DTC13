@@ -95,3 +95,9 @@ footer a:hover {
     background-color: #d0d9cd;
     color: black;
 }
+
+field.padding{
+    margin-top: 100px;
+    margin-bottom: 100px;
+
+}
