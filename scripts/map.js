@@ -195,13 +195,15 @@ db.collection("stores").get()
             var address = doc.data().address; //gets the address
             var city = doc.data().city; //gets the city
             var hours = doc.data().hours; //gets the hours
+            var storeCode = doc.data().code
 
-            let reviewCard = storeCardTemplate.content.cloneNode(true);
-            reviewCard.querySelector('.name').innerHTML = name;     //equiv getElementByClassName
-            reviewCard.querySelector('.address').innerHTML = `Address: ${address}`;
-            reviewCard.querySelector('.city').innerHTML = `City: ${city}`;
-            reviewCard.querySelector('.hours').innerHTML = `Hours: ${hours}`;
-            storeCardGroup.appendChild(reviewCard);
+            let storeCard = storeCardTemplate.content.cloneNode(true);
+            storeCard.querySelector('.card-image').src = `./images/${storeCode}.jpeg`; 
+            storeCard.querySelector('.name').innerHTML = name;     //equiv getElementByClassName
+            storeCard.querySelector('.address').innerHTML = `Address: ${address}`;
+            storeCard.querySelector('.city').innerHTML = `City: ${city}`;
+            storeCard.querySelector('.hours').innerHTML = `Hours: ${hours}`;
+            storeCardGroup.appendChild(storeCard);
         })
     })
 }
