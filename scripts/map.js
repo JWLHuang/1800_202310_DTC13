@@ -23,7 +23,7 @@ function showMap() {
                 map.addImage('eventpin', image); // Pin Icon
 
                 // READING information from "events" collection in Firestore
-                db.collection('hikes').get().then(allEvents => {
+                db.collection('stores').get().then(allEvents => {
                     const features = []; // Defines an empty array for information to be added to
 
                     allEvents.forEach(doc => {
@@ -177,3 +177,32 @@ function showMap() {
 
 // Call the function to display the map with the user's location and event pins
 showMap();
+
+
+function populateReviews() {
+    let storeCardTemplate = document.getElementById("storeCardTemplate");
+    let storeCardGroup = document.getElementById("storeCardGroup");
+
+    let params = new URL(window.location.href) //get the url from the searchbar
+
+
+db.collection("stores").get()
+    .then(allStores => {
+        stores = allStores.docs;
+        console.log(stores);
+        stores.forEach(doc => {
+            var name = doc.data().name; //gets the name field
+            var address = doc.data().address; //gets the address
+            var city = doc.data().city; //gets the city
+            var hours = doc.data().hours; //gets the hours
+
+            let reviewCard = storeCardTemplate.content.cloneNode(true);
+            reviewCard.querySelector('.name').innerHTML = name;     //equiv getElementByClassName
+            reviewCard.querySelector('.address').innerHTML = `Address: ${address}`;
+            reviewCard.querySelector('.city').innerHTML = `City: ${city}`;
+            reviewCard.querySelector('.hours').innerHTML = `Hours: ${hours}`;
+            storeCardGroup.appendChild(reviewCard);
+        })
+    })
+}
+populateReviews();

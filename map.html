@@ -56,15 +56,15 @@
         <h2 style="text-align: center;">Stores Near You</h2>
         <div id='map' style='width: 100%; height: 400px;'></div>
         <!-- MAPBOX -->
-        <div class="container">
+        <!-- <div class="container">
             <div class="row">
                 <div class="card text-center">
                     <img src="./images/superstore.jpeg" class="card-img-top store_image " alt="...">
                     <div class="card-body">
                         <h5 class="card-title"> Superstore</h5>
                         <p class="card-text "><span class="store_text_size">Distance:</span> 20km<br>
-                            <span class="store_text_size"> Address:</span> 123 ABC<br>
-                            <span class="store_text_size"> Store Hours today:</span> 8AM-10PM
+                            <span class="store_text_size"> Address: </span> <span class="card-address"> Address</span><br>
+                            <span class="store_text_size"> Store Hours today:</span> <span class="card-hours">8AM-10PM</span>
                         </p>
                         <a href="#" class="btn btn-primary"> Directions </a>
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
@@ -98,7 +98,32 @@
                     </div>
                 </div>
             </div>
+        </div> -->
+
+        <div class="container">
+            <h2>Stores:</h2>
+            <div id="details-go-here"></div>
+            <!-- Here is container for cards  -->
+            <div class="container">
+                <div id="storeCardGroup" class="row row-cols-auto">
+                </div>
+            </div>
         </div>
+        
+        <template id="storeCardTemplate">
+            <div class="card bg-info">
+                <img class="card-img-top">
+                <div class="card-body bg-light">
+                    <h5 class="name">placeholder</h5>
+                    <p class="address">placeholder</p>
+                    <p class="city">placeholder</p>
+                    <p class="hours">placeholder</p>
+                    <br>
+                    <p class="description">This card has supporting text below as a natural lead-in to additional content.
+                    </p>
+                </div>
+            </div>
+        </template>
     </main>
 
     <!-- copyright footer -->
