@@ -22,12 +22,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css"/>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
 
     <!-- Google Icons (Material Design)-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -51,46 +51,78 @@
     </div>
 
     <div class="container">
-        <div class="card-group">
-            <div class="card text-center">
-                <img src="./images/coffebeans.jpg" class="card-img-top product_image " alt="...">
-                <div class="card-body">
-                    <h5 class="card-title"> Organic Coffee Beans</h5>
-                    <p class="card-text "><span class=product_text_size >Brand Name:</span> OceanBreeze<br>
-                        <span class=product_text_size> Location:</span> B groceries, C grocery store, Corner store<br>
-                        <span class=product_text_size> Ingredients:</span> sourced from ... Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto, sint!
-                    </p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-                </div>
-        <div class="card-group">
-            <div class="card text-center">
-                <img src="./images/cake.jpg" class="card-img-top product_image" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title"> Fig Cake</h5>
-                    <p class="card-text "><span class=product_text_size >Brand Name:</span> Organicmade<br>
-                        <span class=product_text_size> Location:</span> C groceries, E grocery store<br>
-                        <span class=product_text_size> Ingredients:</span> sourced from ...
-                    </p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-                </div>
-        <div class="card-group">
-            <div class="card text-center ">
-                <img src="./images/strawberryjam.jpg" class="card-img-top product_image" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title"> Strawberry jam</h5>
-                    <p class="card-text "><span class=product_text_size >Brand Name:</span> Jam Company<br>
-                        <span class=product_text_size> Location:</span> E groceries, K grocery store<br>
-                        <span class=product_text_size> Ingredients:</span> sourced from ...
-                    </p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
+        <h1>Some recommended products</h1>
+        <!-- Here is the container for cards  -->
+        <div class="container">
+            <div id="products-go-here" class="row row-cols-auto">
             </div>
         </div>
     </div>
-    
+
+    <template id="productCardTemplate">
+        <div class="card-group">
+            <div class="card text-center">
+                <img class="card-image card-img-top product_image" src="..." alt="...">
+                <div class="card-body">
+                    <h5 class="card-name"> Product # </h5>
+                    <p>
+                        <span class="product_text_size">Price:</span>
+                        <span class="card-price">price</span><br>
+                        <span class="product_text_size">Location:</span>
+                        <span class="card-store">location</span><br>
+                        <span class="product_text_size"> Ingredients:</span>
+                        <span class="card-text">ingredients</span>
+                    </p>
+                    <a class="btn btn-primary card-href">See more</a>
+                    <p class="card-time"><small class="text-muted">Last updated # </small></p>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- <div class="container">
+            <div class="card-group">
+                <div class="card text-center">
+                    <img src="./images/coffebeans.jpg" class="card-img-top product_image " alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"> Organic Coffee Beans</h5>
+                        <p class="card-text "><span class=product_text_size>Brand Name:</span> OceanBreeze<br>
+                            <span class=product_text_size> Location:</span> B groceries, C grocery store, Corner
+                            store<br>
+                            <span class=product_text_size> Ingredients:</span> sourced from ... Lorem ipsum, dolor sit
+                            amet consectetur adipisicing elit. Architecto, sint!
+                        </p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                </div>
+                <div class="card-group">
+                    <div class="card text-center">
+                        <img src="./images/cake.jpg" class="card-img-top product_image" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"> Fig Cake</h5>
+                            <p class="card-text "><span class=product_text_size>Brand Name:</span> Organicmade<br>
+                                <span class=product_text_size> Location:</span> C groceries, E grocery store<br>
+                                <span class=product_text_size> Ingredients:</span> sourced from ...
+                            </p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                    <div class="card-group">
+                        <div class="card text-center ">
+                            <img src="./images/strawberryjam.jpg" class="card-img-top product_image" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title"> Strawberry jam</h5>
+                                <p class="card-text "><span class=product_text_size>Brand Name:</span> Jam Company<br>
+                                    <span class=product_text_size> Location:</span> E groceries, K grocery store<br>
+                                    <span class=product_text_size> Ingredients:</span> sourced from ...
+                                </p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
     <!-- copyright footer -->
     <footer id="copyrightPlaceholder"></footer>
 
@@ -104,10 +136,10 @@
     <!---------------------------------------------->
 
     <!-- Link to scripts of your own -->
-        <script src="./scripts/firebase.js"></script>
-        <script src="./scripts/main.js"></script>
-        <script src="./scripts/authentication.js"></script>
-        <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/firebase.js"></script>
+    <script src="./scripts/main.js"></script>
+    <script src="./scripts/authentication.js"></script>
+    <script src="./scripts/skeleton.js"></script>
     <!-- <script src="./scripts/script.js"></script> -->
 
 </body>
