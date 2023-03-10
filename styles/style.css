@@ -96,18 +96,18 @@ footer a:hover {
     color: black;
 }
 
-field.padding{
+.field.padding{
     margin-top: 100px;
     margin-bottom: 100px;
 
 }
 
-checkboxes{
+.checkboxes{
     width: 50%;
     
 }
 
-profile_box{
+.profile_box{
     width: 30%;
     margin-left: 25%;
     margin-right: 25%;

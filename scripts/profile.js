@@ -10,16 +10,14 @@ function saveUserInfo() {
     console.log("inside save UserInfo")
 
     var userName = document.getElementById("nameInput").value;
-    var userSchool = document.getElementById("schoolInput").value;
-    var userCity = document.getElementById("cityInput").value;
+    var userEmail = document.getElementById("userEmail").value;
 
-    console.log(userName, userSchool, userCity);
+    console.log(userName, userEmail);
 
 
     currentUser.update({
         name: userName,
-        school: userSchool,
-        city: userCity
+        email: userEmail
     })
         .then(() => {
             console.log("Document successfully updated!");
@@ -27,3 +25,5 @@ function saveUserInfo() {
 
 
     document.getElementById('personalInfoFields').disabled = true;
+
+}
