@@ -23,6 +23,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- firebase and firebase ui -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+    
     <!-- Google Icons (Material Design)-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Link to styles of your own -->
@@ -35,29 +43,7 @@
     <!-- Your HTML Layout go here -->
 
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-info just">
-        <div class="container-fluid">
-            <p class="navbar-brand" href="#">
-                <img src="./images/logo.png" height="50" alt="EcoKart logo">
-                EcoKart
-            </p>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="#about-us">About</a>
-                    </li>
-                </ul>
-                <div class="d-flex">
-                    <a class="btn btn-primary" onclick="window.location.href='login.html'">Login</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <nav id="navbarPlaceholder"></nav>
 
 
     <!-- welcome section -->
@@ -108,41 +94,11 @@
         </div>
     </div>
 
-    <!-- additional info -->
-    <a id="about-us">
-        <footer class="container-fluid indexFooter">
-    </a>
-    <h1 class="navbar-brand">
-        <img src="./images/logowhite.png" height="50" alt="EcoKart logo">
-        EcoKart
-    </h1>
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <h1 class="indexHeading">
-                EcoKart's mission
-            </h1>
-            <p>
-                We want to help consumers filter through products based on their preferences in order to make more
-                environmentally-conscious
-                decisions. <br><br>
-                We help you decide so you can focus on what you care about.
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h1 class="indexHeading">
-                Getting around
-            </h1>
-            <a href="#">Home</a><br>
-            <a href="#about-us">About</a><br>
-            <a href="#">Contact Us</a>
-        </div>
-    </div>
-    </footer>
     <!-- copyright footer -->
     <footer id="copyrightPlaceholder"></footer>
 
-    <!-- sticky footer -->
-    <!-- <footer id="footerPlaceholder"></footer> -->
+    <!-- footer -->
+    <footer id="footerPlaceholder"></footer>
     <!------------------------------>
 
     <!---------------------------------------------->
@@ -150,8 +106,12 @@
     <!---------------------------------------------->
 
     <!-- Link to scripts of your own -->
+    <script src="./scripts/firebase.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <!-- <script src="./scripts/script.js"></script> -->
+    <script src="./scripts/script.js"></script>
+    <script>
+        logout();       //make sure user is logged out
+    </script>
 
 </body>
 

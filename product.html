@@ -30,6 +30,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+
     <!-- Google Icons (Material Design)-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Link to styles of your own -->
@@ -42,44 +43,72 @@
     <!-- Your HTML Layout go here -->
 
     <!-- navbar -->
-    <nav class="navbar bg-body-tertiary bg-info">
-        <div class="container-fluid justify-content-center">
-            <p class="navbar-brand text-dark">
-                <img src="./images/logo.png" height="50" alt="EcoKart logo">
-                EcoKart
+    <nav id="navbarPlaceholder"></nav>
+
+    <div class="container">
+        <div class="card text-center">
+            <h1><span id="productName">this product</span></h1>
+            <div class="position-relative">
+                <img class="product-img responsive card-image card-img-top" src="" alt="product photo">
+                <button class="btn btn-primary position-absolute bottom-0 end-0 m-3"
+                    onclick="saveProductDocumentIDAndRedirect()">Write Review</button>
+            </div>
+            <p>
+                <span class="product_text_size">Price:</span>
+                <span class="card-price">price</span><br>
+                <span class="product_text_size">Location:</span>
+                <span class="card-store">location</span><br>
+                <span class="product_text_size"> Ingredients:</span>
+                <span class="card-text">ingredients</span>
             </p>
         </div>
-    </nav>
-
-
-    <!-- welcome section -->
-    <div class="px-4 py-5 my-5 text-center">
-        <img class="d-block mx-auto mb-4" src="./images/logo.png" alt="EcoKart Logo" width="200">
-        <h1 class="display-5 fw-bold ">Welcome to EcoKart!</h1>
-        <div class="container">
-            <h1>Let's Login!</h1>
-        </div>
-        <div id="firebaseui-auth-container"></div>
-        <div id="loader">Loading...</div>
-
     </div>
+
+    <div class="container">
+        <h2>Reviews:</h2>
+        <div id="details-go-here"></div>
+        <!-- Here is container for cards  -->
+        <div class="container">
+            <div id="reviewCardGroup" class="row row-cols-auto">
+            </div>
+        </div>
+    </div>
+
+    <template id="reviewCardTemplate">
+        <div class="card bg-secondary">
+            <img class="card-img-top">
+            <div class="card-body bg-light">
+                <h5 class="title">placeholder</h5>
+                <p class="time">placeholder</p>
+                <p class="level">placeholder</p>
+                <p class="season">placeholder</p>
+                <p class="scrambled">placeholder</p>
+                <p class="flooded">placeholder</p>
+                <br>
+                <p class="description">This card has supporting text below as a natural lead-in to additional content.
+                </p>
+            </div>
+        </div>
+    </template>
 
     <!-- copyright footer -->
     <footer id="copyrightPlaceholder"></footer>
 
     <!-- sticky footer -->
-    <!-- <footer id="footerPlaceholder"></footer> -->
+    <footer id="footerPlaceholder"></footer>
 
     <!------------------------------>
 
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
-    <script src="./scripts/firebase.js"></script>
-    <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/authentication.js"></script>
+
     <!-- Link to scripts of your own -->
-    <!-- <script src="./scripts/script.js"></script> -->
+    <script src="./scripts/firebase.js"></script>
+    <script src="./scripts/main.js"></script>
+    <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/product.js"></script>
+    <script src="./scripts/script.js"></script>
 
 </body>
 

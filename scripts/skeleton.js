@@ -3,8 +3,19 @@
 // (navbar, footer, and other things) into html doc. 
 //---------------------------------------------------
 function loadSkeleton() {
-    console.log($('#navbarPlaceholder').load('./text/nav.html'));
-    console.log($('#footerPlaceholder').load('./text/footer.html'));
-    console.log($('#copyrightPlaceholder').load('./text/copyright.html'));
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            // User is signed in.
+            // Do something for the user here.
+            console.log($('#navbarPlaceholder').load('./text/nav_after_login.html'));
+            console.log($('#footerPlaceholder').load('./text/footer_after_login.html'));
+            console.log($('#copyrightPlaceholder').load('./text/copyright.html'));
+        } else {
+            // No user is signed in.
+            console.log($('#navbarPlaceholder').load('./text/nav_before_login.html'));
+            console.log($('#footerPlaceholder').load('./text/footer_before_login.html'));
+            console.log($('#copyrightPlaceholder').load('./text/copyright.html'));
+        }
+    });
 }
-loadSkeleton();  //invoke the function
+loadSkeleton(); //invoke the function
