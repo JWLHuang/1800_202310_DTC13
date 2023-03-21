@@ -179,32 +179,32 @@ function showMap() {
 showMap();
 
 
-function populateReviews() {
+function populateStores() {
     let storeCardTemplate = document.getElementById("storeCardTemplate");
     let storeCardGroup = document.getElementById("storeCardGroup");
 
     let params = new URL(window.location.href) //get the url from the searchbar
 
 
-db.collection("stores").get()
-    .then(allStores => {
-        stores = allStores.docs;
-        console.log(stores);
-        stores.forEach(doc => {
-            var name = doc.data().name; //gets the name field
-            var address = doc.data().address; //gets the address
-            var city = doc.data().city; //gets the city
-            var hours = doc.data().hours; //gets the hours
-            var storeCode = doc.data().code
+    db.collection("stores").get()
+        .then(allStores => {
+            stores = allStores.docs;
+            console.log(stores);
+            stores.forEach(doc => {
+                var name = doc.data().name; //gets the name field
+                var address = doc.data().address; //gets the address
+                var city = doc.data().city; //gets the city
+                var hours = doc.data().hours.Friday; //gets the hours
+                var storeCode = doc.data().code
 
-            let storeCard = storeCardTemplate.content.cloneNode(true);
-            storeCard.querySelector('.card-image').src = `./images/${storeCode}.jpeg`; 
-            storeCard.querySelector('.name').innerHTML = name;     //equiv getElementByClassName
-            storeCard.querySelector('.address').innerHTML = `Address: ${address}`;
-            storeCard.querySelector('.city').innerHTML = `City: ${city}`;
-            storeCard.querySelector('.hours').innerHTML = `Hours: ${hours}`;
-            storeCardGroup.appendChild(storeCard);
+                let storeCard = storeCardTemplate.content.cloneNode(true);
+                storeCard.querySelector('.card-image').src = `./images/${storeCode}.jpeg`;
+                storeCard.querySelector('.name').innerHTML = name;     //equiv getElementByClassName
+                storeCard.querySelector('.address').innerHTML = `Address: ${address}`;
+                storeCard.querySelector('.city').innerHTML = `City: ${city}`;
+                storeCard.querySelector('.hours').innerHTML = `Hours: ${hours}`;
+                storeCardGroup.appendChild(storeCard);
+            })
         })
-    })
 }
-populateReviews();
+populateStores();
