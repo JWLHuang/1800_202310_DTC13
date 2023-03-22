@@ -36,6 +36,7 @@
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
 
+
 </head>
 
 <body>
@@ -45,53 +46,72 @@
     <!-- navbar -->
     <nav id="navbarPlaceholder"></nav>
 
+    <!-- main content -->
     <div class="container">
-        <div class="card text-center">
-            <h1><span id="productName">this product</span></h1>
-            <div class="position-relative">
-                <img class="product-img responsive card-image card-img-top" src="" alt="product photo">
-                <button class="btn btn-primary position-absolute bottom-0 end-0 m-3"
-                    onclick="saveProductDocumentIDAndRedirect()">Write Review</button>
-            </div>
-            <p>
-                <span class="product_text_size">Price:</span>
-                <span class="card-price">price</span><br>
-                <span class="product_text_size">Location:</span>
-                <span class="card-store">location</span><br>
-                <span class="product_text_size"> Ingredients:</span>
-                <span class="card-text">ingredients</span>
-            </p>
-        </div>
-    </div>
+        <br>
+        <h1>Review for <span id="productName"> Product Name</span></h1>
+        <br>
+        <form>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Add a title</label>
+                <input type="text" class="form-control" id="title" placeholder="Title">
+            </div><br>
+            <div class="form-group">
 
-    <div class="container">
-        <h2>Reviews:</h2>
-        <div id="details-go-here"></div>
-        <!-- Here is container for cards  -->
-        <div class="container">
-            <div id="reviewCardGroup" class="row row-cols-auto">
-            </div>
-        </div>
-    </div>
-
-    <template id="reviewCardTemplate">
-        <div class="card bg-secondary">
-            <img class="card-img-top">
-            <div class="card-body bg-light">
-                <h5 class="userName">placeholder</h5>
-                <h5 class="title">placeholder</h5>
-                <p class="time">placeholder</p>
-                <p class="productRating">placeholder</p>
-                <p class="environmentRating">placeholder</p>
-                <p class="healthRating">placeholder</p>
+                <label for="exampleFormControlSelect1">On a scale of 1-5, how would you rate the overall
+                    product?</label>
+                <select class="form-control" id="productRating">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
                 <br>
-                <p class="description">This card has supporting text below as a natural lead-in to additional content.
-                </p>
-                <p class="rebuyRating">placeholder</p>
             </div>
-        </div>
-    </template>
-
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">On a scale of 1-5, how environmentally friendly do you think the
+                    product is?</label>
+                <select class="form-control" id="environmentRating">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+                <br>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">On a scale of 1-5, how healthy do you think the
+                    product is?</label>
+                <select class="form-control" id="healthRating">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+                <br>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Description:</label>
+                <textarea class="form-control" id="description" rows="3"></textarea>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">How likely are you to buy the product again?</label>
+                <div class="slidecontainer">
+                    <input type="range" min="1" max="100" value="50" class="slider" id="rebuyRatingSlider">
+                </div>
+                <p>Percentage: <span id="rebuyRatingValue"></span></p>
+                <br>
+            </div>
+    </div>
+    <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-lg btn-primary pull-right" onclick="writeReview()">Submit</button>
+    </div>
+    </form>
+    </div>
     <!-- copyright footer -->
     <footer id="copyrightPlaceholder"></footer>
 
@@ -107,8 +127,9 @@
     <!-- Link to scripts of your own -->
     <script src="./scripts/firebase.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/product.js"></script>
+    <script src="./scripts/review.js"></script>
     <script src="./scripts/script.js"></script>
+
 
 </body>
 
