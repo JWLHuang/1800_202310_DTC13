@@ -29,6 +29,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
 
     <!-- Google Icons (Material Design)-->
@@ -56,60 +57,57 @@
     <!-- </div> -->
 
     <div class="container center">
-        <div class="container center">
-            <div class="row align-items-centre">
-                <div class="container py-3">
-                    <!-- <input type="file" id="mypic-input" accept="image/*" /> -->
-                    <img id="mypic-goes-here" width=100px height=100px />
-                    <input type="file" id="mypic-input" accept="image/*" />
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <!-- this is for spacing purposes -->
+        
+            <div class="container text-center py-3">
+                <img id="mypic-goes-here" src="#" width=300 height=300 />
+                <br>
+                <br>
+                <input type="file" id="mypic-input" accept="image/*" onchange="userImage()">
+            </div>
+            <br>
+            <br>
+            <br>
+            <form>
+                <fieldset class="mb-3" id="personalInfoFields" disabled>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" id="nameInput" class="form-control" placeholder="Enter your name">
                     </div>
-                    <div class="col">
-                        <form>
-                            <fieldset class="mb-3" id="personalInfoFields" disabled>
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <input type="text" id="nameInput" class="form-control"
-                                        placeholder="Enter your name">
-                                </div>
-                                <!-- <div class="form-group">
+                    <!-- <div class="form-group">
                         <label>Email</label>
                         <input type="text" id="emailInput" class="form-control" placeholder="Enter your email">
                     </div> -->
-                            </fieldset>
-                            <div class="d-flex justify-content-end mt-5">
-                                <button type="button" class="btn btn-secondary" onclick="editUserInfo()">Edit</button>
-                                <span style="width: 10px"></span>
-                                <button type="button" class="btn btn-info" onclick="saveUserInfo()">Save</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col">
-                        <!-- this is for spacing purposes -->
-                    </div>
+                </fieldset>
+                <div class="d-flex justify-content-end mt-5">
+                    <button type="button" class="btn btn-secondary" onclick="editUserInfo()">Edit</button>
+                    <span style="width: 10px"></span>
+                    <button type="button" class="btn btn-info" onclick="saveUserInfo()">Save</button>
                 </div>
-            </div>
+            </form>
+        </div>
+        <div class="col">
+            <!-- this is for spacing purposes -->
+        </div>
+    </div>
+    </div>
 
-            <!-- copyright footer -->
-            <footer id="copyrightPlaceholder"></footer>
+    <!-- copyright footer -->
+    <footer id="copyrightPlaceholder"></footer>
 
-            <!-- sticky footer -->
-            <footer id="footerPlaceholder"></footer>
+    <!-- sticky footer -->
+    <footer id="footerPlaceholder"></footer>
 
-            <!------------------------------>
+    <!------------------------------>
 
-            <!---------------------------------------------->
-            <!-- Your own JavaScript functions go here    -->
-            <!---------------------------------------------->
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
 
-            <!-- Link to scripts of your own -->
-            <script src="./scripts/firebase.js"></script>
-            <script src="./scripts/skeleton.js"></script>
-            <script src="./scripts/profile.js"></script>
-            <script src="./scripts/script.js"></script>
+    <!-- Link to scripts of your own -->
+    <script src="./scripts/firebase.js"></script>
+    <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/profile.js"></script>
+    <script src="./scripts/script.js"></script>
 
 </body>
 
