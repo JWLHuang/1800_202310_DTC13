@@ -62,18 +62,18 @@
         <div class="container d-flex justify-content-between">
             <div class="store_header col-sm-2">
                 <h2>Stores:</h2>
-                <p>Distances are displayed in kilometres</p>
+                <p style="font-size: .7em">(Distances are displayed in kilometres)</p>
                 <div id="details-go-here"></div>
             </div>
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false" onclick="test()"> 
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
                     Sort By
-                    <!-- addded onclick for testing button press -->
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Distance (Default)</a>
-                    <a class="dropdown-item" href="#">Hours</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <button class="dropdown-item" type="button" id="distance" onclick="populateStores()">Distance (Default)</button>
+                    <button class="dropdown-item" type="button" id="closing" onclick="populateStoresByClosingHours()">Hours (Closing)</button>
+                    <button class="dropdown-item" type="button" id="closing" onclick="populateStoresByOpeningHours()">Hours (Opening)</button>
                 </div>
             </div>
         </div>
@@ -95,9 +95,6 @@
                     <p class="city">placeholder</p>
                     <p class="hours">placeholder</p>
                     <br>
-                    <p class="description">This card has supporting text below as a natural lead-in to additional
-                        content.
-                    </p>
                 </div>
             </div>
         </template>
@@ -117,7 +114,6 @@
 
     <!-- Link to scripts of your own -->
     <script src="./scripts/firebase.js"></script>
-    <!-- <script src="./scripts/main.js"></script> -->
     <script src="./scripts/authentication.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/map.js"></script>
