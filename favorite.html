@@ -43,8 +43,8 @@
     <!------------------------------>
     <!-- Your HTML Layout go here -->
 
-    <!-- navbar -->
-    <nav id="navbarPlaceholder"></nav>
+    <!-- navbar
+    <nav id="navbarPlaceholder"></nav> -->
 
     <!-- welcome section -->
     <div class="px-4 py-5 my-5 text-center">
@@ -53,12 +53,34 @@
     </div>
 
     <!-- main content -->
+    <div class="container">
+        <h1 class = "center_text">Favourite items </h1>
+        <!-- Here is container for cards  -->
+        <div class="container">
+            <div id="hikeCardGroup" class="row row-cols-auto">
+            </div>
+        </div>
+    </div>
+    
+    <!-- Templates for general use, not displayed -->
+    <template id="savedCardTemplate">
+        <div class="card py-2 mx-2 bg-light" style="width: 15rem;">
+            <img class="card-image card-img-top" src=" ..." alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-length">placeholder</p>
+                <br>
+                <a class="btn btn-secondary card-href" id="read-more">Read more</a>
+            </div>
+        </div>
+    </template>
 
-    <!-- copyright footer -->
+
+    <!-- copyright footer
     <footer id="copyrightPlaceholder"></footer>
 
     <!-- sticky footer -->
-    <footer id="footerPlaceholder"></footer>
+    <!-- <footer id="footerPlaceholder"></footer> --> 
 
     <!------------------------------>
 

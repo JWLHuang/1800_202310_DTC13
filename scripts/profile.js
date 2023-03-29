@@ -25,6 +25,7 @@ function insertName() {
 }
 insertName(); //run the function
 
+
 var currentUser;
 var ImageFile;
 
@@ -40,10 +41,8 @@ function populateUserInfo() {
                 .then(userDoc => {
                     //get the data fields of the user
                     var userName = userDoc.data().name;
-
-
-
-                    //if the data fields are not empty, then write them in to the form.
+                    var userBirthday = userDoc.data().birthday;
+                   //if the data fields are not empty, then write them in to the form.
                     if (userName != null) {
                         // document.getElementById("nameInput").setAttribute("placeholder", userName);
                         document.getElementById("nameInput").value = userName;

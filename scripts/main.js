@@ -97,3 +97,18 @@ function displayCardsDynamically(collection) {
 }
 
 displayCardsDynamically("products");
+
+function saveFavourite(favouriteID) {
+    currentUser.set({
+        bookmarks: firebase.firestore.FieldValue.arrayUnion(favouriteID)
+    }, {
+        merge: true
+    })
+        .then(function () {
+            console.log("bookmark has been saved for: " + currentUser);
+            var iconID = 'save-' + favouriteID;
+            //console.log(iconID);
+            //this is to change the icon of the hike that was saved to "filled"
+            document.getElementById(iconID).innerText = 'favourite';
+        });
+}

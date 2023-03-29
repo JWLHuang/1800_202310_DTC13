@@ -153,3 +153,8 @@ footer a:hover {
     background: #ffb366;
     cursor: pointer;
 }
+
+.center_text{
+    text-align: center;
+    font-size: 30px;
+}
