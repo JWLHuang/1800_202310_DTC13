@@ -37,14 +37,66 @@ function displayproductInfo() {
         .then(doc => {
             var productCode = doc.data().code;
             var productName = doc.data().name;
+            var docID = doc.id;
 
             // only populate title, and image
             document.getElementById("productName").innerHTML = productName;
             let imgEvent = document.querySelector(".product-img");
             imgEvent.src = "./images/" + productCode + ".jpg";
+
+            document.querySelector("i").id = "save-" + docID
+            document.querySelector("i").onclick = () => saveBookmark(docID)
+
+            currentUser.get().then(userDoc => {
+                //get the user name
+                var bookmarks = userDoc.data().bookmarks;
+                if (bookmarks.includes(docID)) {
+                    document.getElementById('save-' + docID).innerText = 'bookmark';
+                }
+            })
         });
 }
 displayproductInfo();
+
+function saveBookmark(storeID) {
+    currentUser.get().then(userDoc => {
+        //get the user name
+        var bookmarks = userDoc.data().bookmarks;
+        if (bookmarks.includes(storeID)) {
+            removeBookmark(storeID);
+            document.getElementById('save-' + storeID).innerText = 'bookmark_border';
+        } else {
+            currentUser.set({
+                bookmarks: firebase.firestore.FieldValue.arrayUnion(storeID)
+            }, {
+                merge: true
+            })
+                .then(function () {
+                    console.log("bookmark has been saved for: " + currentUser);
+                    var iconID = 'save-' + storeID;
+                    //console.log(iconID);
+                    //this is to change the icon of the hike that was saved to "filled"
+                    document.getElementById(iconID).innerText = 'bookmark';
+                });
+        }
+    })
+}
+
+function removeBookmark(storeID) {
+    console.log("REMOVE bookmark function reached")
+    currentUser.set({
+        bookmarks: firebase.firestore.FieldValue.arrayRemove(storeID)
+    }, {
+        merge: true
+    })
+        .then(function () {
+            console.log("bookmark has been removed for: " + currentUser);
+            var iconID = storeID;
+            //console.log(iconID);
+            //this is to change the icon of the hike that was saved to "filled"
+            document.getElementById(iconID).innerText = 'bookmark_boarde';
+        });
+}
 
 function saveProductDocumentIDAndRedirect() {
     let params = new URL(window.location.href) //get the url from the search bar
