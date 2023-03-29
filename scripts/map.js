@@ -180,13 +180,14 @@ showMap();
 
 
 function populateStores() {
+    $("#storeCardGroup").empty() //clears the storeCardGroup div once clicked from dropdown
     let storeCardTemplate = document.getElementById("storeCardTemplate");
     let storeCardGroup = document.getElementById("storeCardGroup");
 
-    let params = new URL(window.location.href) //get the url from the searchbar
+    // let params = new URL(window.location.href) //get the url from the searchbar
 
 
-    db.collection("stores").get()
+    db.collection("stores").orderBy("distance").get()
         .then(allStores => {
             stores = allStores.docs;
             console.log(stores);
@@ -194,17 +195,90 @@ function populateStores() {
                 var name = doc.data().name; //gets the name field
                 var address = doc.data().address; //gets the address
                 var city = doc.data().city; //gets the city
+                var distance = doc.data().distance; //gets the distance
                 var hours = doc.data().hours.Friday; //gets the hours
-                var storeCode = doc.data().code
+                var storeCode = doc.data().code;
 
                 let storeCard = storeCardTemplate.content.cloneNode(true);
                 storeCard.querySelector('.card-image').src = `./images/${storeCode}.jpeg`;
                 storeCard.querySelector('.name').innerHTML = name;     //equiv getElementByClassName
                 storeCard.querySelector('.address').innerHTML = `Address: ${address}`;
                 storeCard.querySelector('.city').innerHTML = `City: ${city}`;
+                storeCard.querySelector('.distance').innerHTML = `Distance: ${distance}`;
                 storeCard.querySelector('.hours').innerHTML = `Hours: ${hours}`;
                 storeCardGroup.appendChild(storeCard);
             })
         })
 }
 populateStores();
+// populateStores will immediately run on page load
+
+
+function test(){
+    console.log("dropdown clicked")
+}
+
+
+
+function populateStoresByClosingHours() {
+    $("#storeCardGroup").empty() //clears the storeCardGroup div once clicked from dropdown
+    let storeCardTemplate = document.getElementById("storeCardTemplate");
+    let storeCardGroup = document.getElementById("storeCardGroup");
+
+    // let params = new URL(window.location.href) //get the url from the searchbar
+
+    db.collection("stores").orderBy("close", "desc").get()
+        .then(allStores => {
+            stores = allStores.docs;
+            console.log(stores);
+            stores.forEach(doc => {
+                var name = doc.data().name; //gets the name field
+                var address = doc.data().address; //gets the address
+                var city = doc.data().city; //gets the city
+                var distance = doc.data().distance; //gets the distance
+                var hours = doc.data().hours.Friday; //gets the hours
+                var storeCode = doc.data().code;
+
+                let storeCard = storeCardTemplate.content.cloneNode(true);
+                storeCard.querySelector('.card-image').src = `./images/${storeCode}.jpeg`;
+                storeCard.querySelector('.name').innerHTML = name;     //equiv getElementByClassName
+                storeCard.querySelector('.address').innerHTML = `Address: ${address}`;
+                storeCard.querySelector('.city').innerHTML = `City: ${city}`;
+                storeCard.querySelector('.distance').innerHTML = `Distance: ${distance}`;
+                storeCard.querySelector('.hours').innerHTML = `Hours: ${hours}`;
+                storeCardGroup.appendChild(storeCard);
+            })
+        })
+}
+
+
+function populateStoresByOpeningHours() {
+    $("#storeCardGroup").empty() //clears the storeCardGroup div once clicked from dropdown
+    let storeCardTemplate = document.getElementById("storeCardTemplate");
+    let storeCardGroup = document.getElementById("storeCardGroup");
+
+    // let params = new URL(window.location.href) //get the url from the searchbar
+
+    db.collection("stores").orderBy("close").get()
+        .then(allStores => {
+            stores = allStores.docs;
+            console.log(stores);
+            stores.forEach(doc => {
+                var name = doc.data().name; //gets the name field
+                var address = doc.data().address; //gets the address
+                var city = doc.data().city; //gets the city
+                var distance = doc.data().distance; //gets the distance
+                var hours = doc.data().hours.Friday; //gets the hours
+                var storeCode = doc.data().code;
+
+                let storeCard = storeCardTemplate.content.cloneNode(true);
+                storeCard.querySelector('.card-image').src = `./images/${storeCode}.jpeg`;
+                storeCard.querySelector('.name').innerHTML = name;     //equiv getElementByClassName
+                storeCard.querySelector('.address').innerHTML = `Address: ${address}`;
+                storeCard.querySelector('.city').innerHTML = `City: ${city}`;
+                storeCard.querySelector('.distance').innerHTML = `Distance: ${distance}`;
+                storeCard.querySelector('.hours').innerHTML = `Hours: ${hours}`;
+                storeCardGroup.appendChild(storeCard);
+            })
+        })
+}
