@@ -42,14 +42,23 @@ function populateUserInfo() {
                     //get the data fields of the user
                     var userName = userDoc.data().name;
                     var userBirthday = userDoc.data().birthday;
-                   //if the data fields are not empty, then write them in to the form.
+                    var userAddress = userDoc.data().address;
+                    var userPhone = userDoc.data().phone;
+
+                    //if the data fields are not empty, then write them in to the form.
                     if (userName != null) {
                         // document.getElementById("nameInput").setAttribute("placeholder", userName);
                         document.getElementById("nameInput").value = userName;
                     }
-                    //     if (userSchool != null) {
-                    //         document.getElementById("emailInput").value = userEmail;
-                    //     }
+                    if (userBirthday != null) {
+                        document.getElementById("birthdayInput").value = userBirthday;
+                    }
+                    if (userAddress != null) {
+                        document.getElementById("addressInput").value = userAddress;
+                    }
+                    if (userPhone != null) {
+                        document.getElementById("phoneInput").value = userPhone;
+                    }
                 })
         } else {
             // No user is signed in.
@@ -113,13 +122,19 @@ function saveUserInfo() {
             })
         console.log("inside save UserInfo")
         var userName = document.getElementById("nameInput").value;
-        // var userEmail = document.getElementById("emailInput").value;
+        var userBirthday = document.getElementById("birthdayInput").value;
+        var userAddress = document.getElementById("addressInput").value;
+        var userPhone = document.getElementById("phoneInput").value;
+
 
         // console.log(userName, userEmail);
-        console.log(userName);
+        console.log(userName, userBirthday, userAddress, userPhone);
         currentUser.update({
             name: userName,
-            // email: userEmail,
+            birthday: userBirthday,
+            address: userAddress,
+            phone: userPhone,
+             
         })
             .then(() => {
                 console.log("Document successfully updated!");
@@ -131,6 +146,41 @@ function saveUserInfo() {
     }
     )
 };
+
+
+//-------------------------------------------------
+// This function asks user to confirm deletion:
+// 1. remove document from users collection in firestore
+// 2. THEN, remove auth() user from Firebase auth
+//-------------------------------------------------
+function deleteUser() {
+    firebase.auth().onAuthStateChanged(user => {
+
+        // Double check! Usability Heuristics #5
+        var result = confirm("WARNING " + user.displayName +
+            ": Deleting your User Account!!");
+
+        // If confirmed, then go ahead
+        if (result) {
+            // First, delete from Firestore users collection 
+            db.collection("users").doc(user.uid).delete()
+                .then(() => {
+                    console.log("Deleted from Firestore Collection");
+
+                    // Next, delete from Firebase Auth
+                    user.delete().then(() => {
+                        console.log("Deleted from Firebase Auth.");
+                        alert("user has been deleted");
+                        window.location.href = "index.html";
+                    }).catch((error) => {
+                        console.log("Error deleting from Firebase Auth " + error);
+                    });
+                }).catch((error) => {
+                    console.error("Error deleting user: ", error);
+                });
+        }
+    })
+}
 
 //global variable to store the File Object reference
 
