@@ -30,7 +30,8 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
-    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  
     <!-- Google Icons (Material Design)-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Link to styles of your own -->
@@ -49,12 +50,12 @@
     <!-- welcome section -->
     <div class="px-4 py-5 my-5 text-center">
         <img class="d-block mx-auto mb-4" src="./images/logo.png" alt="EcoKart Logo" width="200">
-        <h1 class="display-5 fw-bold">List for <span class="name-goes-here">Name</span></h1>
+        <h1 class="display-5 fw-bold">Products for <span class="name-goes-here">Name</span></h1>
     </div>
     <a href="favorite.html" class="btn btn-primary">See your favorites</a>
 
     <div class="container">
-        <h1>Some recommended products</h1>
+        <h1 class="center_text">Some recommended products</h1>
         <!-- Here is the container for cards  -->
         <div class="container">
             <div id="products-go-here" class="row row-cols-auto">
@@ -65,7 +66,8 @@
     <template id="productCardTemplate">
         <div class="card-group">
             <div class="card text-center">
-                <img class="card-image card-img-top product_image" src="..." alt="...">
+                <img class="card-image card-img-top product_image" src="..." alt="..." >
+                <i class="material-symbols-outlined position-absolute top-0 end-0 m-3">favorite</i>
                 <div class="card-body">
                     <h5 class="card-name"> Product # </h5>
                     <p>
@@ -75,8 +77,9 @@
                         <span class="card-store">location</span><br>
                         <span class="product_text_size"> Ingredients:</span>
                         <span class="card-text">ingredients</span>
+
                     </p>
-                    <a class="btn btn-primary card-href">See more</a>
+                    <a class="btn btn-primary card-href">See more</a> 
                     <p class="card-time"><small class="text-muted">Last updated # </small></p>
                 </div>
             </div>
