@@ -119,6 +119,6 @@ function removeBookmark(storeID) {
             var iconID = storeID;
             //console.log(iconID);
             //this is to change the icon of the hike that was saved to "filled"
-            document.getElementById(iconID).innerText = 'bookmark_boarde';
+            document.getElementById(iconID).innerText = 'bookmark_border';
         });
 }
