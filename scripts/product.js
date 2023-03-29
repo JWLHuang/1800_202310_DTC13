@@ -69,32 +69,32 @@ function populateReviews() {
             reviews.forEach(doc => {
                 var userID = doc.data().userID;
                 console.log(userID)
-                var reviewer = db.collection("users").doc(userID).get().then(
-                    userDoc => {
-                        var userName = userDoc.data().name;
-                        return userName
-                    });
-                console.log(reviewer)
-                var userName = reviewer;
-                var title = doc.data().title;
-                var productRating = doc.data().productRating;
-                var environmentRating = doc.data().environmentRating;
-                var healthRating = doc.data().healthRating;
-                var description = doc.data().description;
-                var rebuyRating = doc.data().rebuyRating;
-                var time = doc.data().timestamp.toDate();
-                console.log(time)
+                db.collection("users").doc(userID).get()
+                    .then(userDoc => {
 
-                let reviewCard = productCardTemplate.content.cloneNode(true);
-                reviewCard.querySelector('.userName').innerHTML = userName;     //equiv getElementByClassName
-                reviewCard.querySelector('.title').innerHTML = title;     //equiv getElementByClassName
-                reviewCard.querySelector('.time').innerHTML = new Date(time).toLocaleString();    //equiv getElementByClassName
-                reviewCard.querySelector('.productRating').innerHTML = `Overall Rating: ${productRating}`;
-                reviewCard.querySelector('.environmentRating').innerHTML = `Eco-Friendliness: ${environmentRating}`;
-                reviewCard.querySelector('.healthRating').innerHTML = `Healthiness: ${healthRating}`;  //equiv getElementByClassName
-                reviewCard.querySelector('.description').innerHTML = `Description: ${description}`;
-                reviewCard.querySelector('.rebuyRating').innerHTML = `Will Buy Again: ${rebuyRating}`;  //equiv getElementByClassName
-                productCardGroup.appendChild(reviewCard);
+                        console.log(userDoc.data().name)
+                        var userName = userDoc.data().name;
+                        var title = doc.data().title;
+                        var productRating = doc.data().productRating;
+                        var environmentRating = doc.data().environmentRating;
+                        var healthRating = doc.data().healthRating;
+                        var description = doc.data().description;
+                        var rebuyRating = doc.data().rebuyRating;
+                        var time = doc.data().timestamp.toDate();
+                        console.log(time)
+
+                        let reviewCard = productCardTemplate.content.cloneNode(true);
+                        reviewCard.querySelector('.userName').innerHTML = userName;     //equiv getElementByClassName
+                        reviewCard.querySelector('.title').innerHTML = title;     //equiv getElementByClassName
+                        reviewCard.querySelector('.time').innerHTML = new Date(time).toLocaleString();    //equiv getElementByClassName
+                        reviewCard.querySelector('.productRating').innerHTML = `Overall Rating: ${productRating}`;
+                        reviewCard.querySelector('.environmentRating').innerHTML = `Eco-Friendliness: ${environmentRating}`;
+                        reviewCard.querySelector('.healthRating').innerHTML = `Healthiness: ${healthRating}`;  //equiv getElementByClassName
+                        reviewCard.querySelector('.description').innerHTML = `Description: ${description}`;
+                        reviewCard.querySelector('.rebuyRating').innerHTML = `Will Buy Again: ${rebuyRating}`;  //equiv getElementByClassName
+                        productCardGroup.appendChild(reviewCard);
+                    })
+
             })
         })
 }
