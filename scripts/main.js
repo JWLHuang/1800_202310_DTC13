@@ -58,10 +58,12 @@ function writeProducts() {
 
 // writeProducts();
 
-function displayCardsDynamically(collection) {
+function displayCardsDynamically() {
+    console.log("displayCardsDynamically clicked")
+    $("#products-go-here").empty()
     let cardTemplate = document.getElementById("productCardTemplate");
 
-    db.collection(collection).get()   //the collection called "products"
+    db.collection("products").orderBy("name").get()   //the collection called "products"
         .then(allproducts => {
             //var i = 1;  //Optional: if you want to have a unique ID for each product
             allproducts.forEach(doc => { //iterate thru each doc
@@ -89,14 +91,14 @@ function displayCardsDynamically(collection) {
                 // newcard.querySelector('.card-image').setAttribute("id", "cimage" + i);
 
                 //attach to gallery
-                document.getElementById(collection + "-go-here").appendChild(newcard);
+                document.getElementById("products-go-here").appendChild(newcard);
 
                 //i++;   //Optional: iterate variable to serve as unique ID
             })
         })
 }
 
-displayCardsDynamically("products");
+displayCardsDynamically();
 
 function saveFavourite(favouriteID) {
     currentUser.set({
@@ -111,4 +113,73 @@ function saveFavourite(favouriteID) {
             //this is to change the icon of the hike that was saved to "filled"
             document.getElementById(iconID).innerText = 'favourite';
         });
+}
+
+function sortLowHigh() {
+    console.log("sortLowHigh clicked")
+    $("#products-go-here").empty()
+    let cardTemplate = document.getElementById("productCardTemplate");
+
+    db.collection("products").orderBy("price", "desc").get()   //the collection called "products"
+        .then(allproducts => {
+            //var i = 1;  //Optional: if you want to have a unique ID for each product
+            allproducts.forEach(doc => { //iterate thru each doc
+                var productCode = doc.data().code;    //get unique ID to each product to be used for fetching right image
+                var productName = doc.data().name;       // get value of the "name" key
+                var productStore = doc.data().store;  // get value of the "store" key
+                var productPrice = doc.data().price;  // get value of the "store" key
+                var productIngredients = doc.data().ingredients;  // get value of the "details" key
+                var productTime = doc.data().last_updated;    //get time
+                var docID = doc.id;
+                let newcard = cardTemplate.content.cloneNode(true);
+
+                //update title and text and image
+                newcard.querySelector('.card-name').innerHTML = productName;
+                newcard.querySelector('.card-store').innerHTML = productStore;
+                newcard.querySelector('.card-price').innerHTML = productPrice;
+                newcard.querySelector('.card-text').innerHTML = productIngredients;
+                newcard.querySelector('.card-time').innerHTML = productTime;
+                newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: cake.jpg
+                newcard.querySelector('a').href = "product.html?docID=" + docID;
+
+                //attach to gallery
+                document.getElementById("products-go-here").appendChild(newcard);
+
+            })
+        })
+}
+
+function sortHighLow() {
+    console.log("sortHighLow clicked")
+    $("#products-go-here").empty()
+    let cardTemplate = document.getElementById("productCardTemplate");
+    let productCardGroup = document.getElementById("productCardGroup");
+
+    db.collection("products").orderBy("price").get()   //the collection called "products"
+        .then(allproducts => {
+            //var i = 1;  //Optional: if you want to have a unique ID for each product
+            allproducts.forEach(doc => { //iterate thru each doc
+                var productCode = doc.data().code;    //get unique ID to each product to be used for fetching right image
+                var productName = doc.data().name;       // get value of the "name" key
+                var productStore = doc.data().store;  // get value of the "store" key
+                var productPrice = doc.data().price;  // get value of the "store" key
+                var productIngredients = doc.data().ingredients;  // get value of the "details" key
+                var productTime = doc.data().last_updated;    //get time
+                var docID = doc.id;
+                let newcard = cardTemplate.content.cloneNode(true);
+
+                //update title and text and image
+                newcard.querySelector('.card-name').innerHTML = productName;
+                newcard.querySelector('.card-store').innerHTML = productStore;
+                newcard.querySelector('.card-price').innerHTML = productPrice;
+                newcard.querySelector('.card-text').innerHTML = productIngredients;
+                newcard.querySelector('.card-time').innerHTML = productTime;
+                newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: cake.jpg
+                newcard.querySelector('a').href = "product.html?docID=" + docID;
+                // productCardGroup.appendchild(newcard);
+                //attach to gallery
+                document.getElementById("products-go-here").appendChild(newcard);
+
+            })
+        })
 }

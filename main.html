@@ -52,16 +52,29 @@
         <img class="d-block mx-auto mb-4" src="./images/logo.png" alt="EcoKart Logo" width="200">
         <h1 class="display-5 fw-bold">Products for <span class="name-goes-here">Name</span></h1>
     </div>
+    
     <a href="favorite.html" class="btn btn-primary">See your favorites</a>
-
+    
     <div class="container">
         <h1 class="center_text">Some recommended products</h1>
         <!-- Here is the container for cards  -->
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Sort By
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <button class="dropdown-item" type="button" id="Alpha" onclick="displayCardsDynamically()">Alphabetical (Default)</button>
+                <button class="dropdown-item" type="button" id="Price (Lowest to Highest)" onclick="sortLowHigh()">Price (Lowest to Highest)</button>
+                <button class="dropdown-item" type="button" id="PriceHigh" onclick="sortHighLow()">Price (Highest to Lowest)</button>
+            </div>
+        </div>
         <div class="container">
             <div id="products-go-here" class="row row-cols-auto">
             </div>
         </div>
     </div>
+    
 
     <template id="productCardTemplate">
         <div class="card-group">
