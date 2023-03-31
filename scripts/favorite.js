@@ -79,8 +79,8 @@ function getBookmarks(user) {
                         newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: NV01.jpg
                         newcard.querySelector('.card-ingredient').innerHTML = productIngredient;
                         newcard.querySelector('a').href = "product.html?docID=" + docID;
-                        document.querySelector('i').id = "save-" + docID
-                        document.querySelector('i').onclick = () => updateBookmark(docID);
+                        // document.querySelector('i').id = "save-" + docID
+                        // document.querySelector('i').onclick = () => updateBookmark(docID);
                         
                         //Finally, attach this new card to the gallery
                         savedProductsCardGroup.appendChild(newcard);
