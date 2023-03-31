@@ -37,10 +37,19 @@ function displayproductInfo() {
         .then(doc => {
             var productCode = doc.data().code;
             var productName = doc.data().name;
+            var productStore = doc.data().store;  // get value of the "store" key
+            var productPrice = doc.data().price;  // get value of the "store" key
+            var productIngredients = doc.data().ingredients;  // get value of the "details" key
+            var productPackaging = doc.data().packaging;  // get value of the "details" key
+            var docID = doc.id;
             var docID = doc.id;
 
-            // only populate title, and image
+            // populate information
             document.getElementById("productName").innerHTML = productName;
+            document.querySelector('.card-store').innerHTML = productStore;
+            document.querySelector('.card-price').innerHTML = productPrice;
+            document.querySelector('.card-ingredients').innerHTML = productIngredients;
+            document.querySelector('.card-packaging').innerHTML = productPackaging;
             let imgEvent = document.querySelector(".product-img");
             imgEvent.src = "./images/" + productCode + ".jpg";
 

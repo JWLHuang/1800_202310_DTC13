@@ -31,32 +31,52 @@ function writeProducts() {
 
     productRef.add({
         code: "coffebeans",
-        name: "coffee beans",
-        store: "store1",  // get from database
-        price: "price1", // get from database
-        ingredients: "ingredients1",
-
-        last_updated: firebase.firestore.FieldValue.serverTimestamp()  //current system time
+        name: "Coffee Beans",
+        store: "store1",
+        price: 10.95,
+        ingredients: firebase.firestore.FieldValue.arrayUnion("coffee beans", "preservatives", "sugar"),
+        packaging: firebase.firestore.FieldValue.arrayUnion("paper"),
     });
     productRef.add({
         code: "cake",
-        name: "cake",
+        name: "Cake",
         store: "store2", // get from database
-        price: "price2", // get from database
-        ingredients: "ingredients2",
-        last_updated: firebase.firestore.Timestamp.fromDate(new Date("March 10, 2023"))
+        price: 16.97,
+        ingredients: firebase.firestore.FieldValue.arrayUnion("sugar", "flour", "eggs", "butter", "vanilla", "baking powder", "salt", "cherries", "milk", "soy", "wheat", "xanthan gum", "artificial flavor", "artificial color"),
+        packaging: firebase.firestore.FieldValue.arrayUnion("polyethylene terephthalate(PET) plastic", "colored"),
+
     });
     productRef.add({
         code: "strawberryjam",
-        name: "strawberry jam",
+        name: "Strawberry jam",
         store: "store3",  // get from database
-        price: "price3",  // get from database
-        ingredients: "ingredients3",
-        last_updated: firebase.firestore.Timestamp.fromDate(new Date("March 10, 2023"))
+        price: 5.49,
+        ingredients: firebase.firestore.FieldValue.arrayUnion("coffee beans", "preservatives", "sugar"),
+        packaging: firebase.firestore.FieldValue.arrayUnion("glass", "paper", "nylon"),
+
     });
 }
 
 // writeProducts();
+
+// function updateProducts() {
+//     //define a variable for the collection you want to create in Firestore to populate data
+//     db.collection("products").where("code", "==", "coffebeans").get()
+//     .then(productDoc => {
+//         productField = productDoc.docs;
+//         productField.set({
+//             name: "Coffee Beans",
+//             // store: "store1",
+//             price: 10.95,
+//             ingredientss: firebase.firestore.FieldValue.arrayUnion("coffee beans", "preservatives", "sugar"),
+//             // packaging: firebase.firestore.FieldValue.arrayUnion("plastic"),
+//         }, {
+//             merge: true
+//         });
+//     });
+// }
+
+// updateProducts();
 
 function displayCardsDynamically() {
     console.log("displayCardsDynamically clicked")
@@ -69,19 +89,17 @@ function displayCardsDynamically() {
             allproducts.forEach(doc => { //iterate thru each doc
                 var productCode = doc.data().code;    //get unique ID to each product to be used for fetching right image
                 var productName = doc.data().name;       // get value of the "name" key
-                var productStore = doc.data().store;  // get value of the "store" key
+                // var productStore = doc.data().store;  // get value of the "store" key
                 var productPrice = doc.data().price;  // get value of the "store" key
-                var productIngredients = doc.data().ingredients;  // get value of the "details" key
-                var productTime = doc.data().last_updated;    //get time
+                // var productIngredients = doc.data().ingredients;  // get value of the "details" key
                 var docID = doc.id;
                 let newcard = cardTemplate.content.cloneNode(true);
 
                 //update title and text and image
                 newcard.querySelector('.card-name').innerHTML = productName;
-                newcard.querySelector('.card-store').innerHTML = productStore;
+                // newcard.querySelector('.card-store').innerHTML = productStore;
                 newcard.querySelector('.card-price').innerHTML = productPrice;
-                newcard.querySelector('.card-text').innerHTML = productIngredients;
-                newcard.querySelector('.card-time').innerHTML = productTime;
+                // newcard.querySelector('.card-text').innerHTML = productIngredients;
                 newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: cake.jpg
                 newcard.querySelector('a').href = "product.html?docID=" + docID;
 
