@@ -83,11 +83,12 @@ function showMap() {
                         while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
                             coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
                         }
+                        
 
                         new mapboxgl.Popup()
                             .setLngLat(coordinates)
                             .setHTML(description)
-                            .addTo(map);
+                            .addTo(map)
                     });
 
                     // Change the cursor to a pointer when the mouse is over the places layer.
