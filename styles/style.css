@@ -158,3 +158,9 @@ footer a:hover {
     text-align: center;
     font-size: 30px;
 }
+
+.featureBtn{
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 0.75rem;
+}
