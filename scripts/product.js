@@ -84,7 +84,7 @@ function updateBookmark(id) {
                     console.log("This bookmark is removed for" + currentUser);
                     var iconID = "save-" + id;
                     console.log(iconID);
-                    document.getElementById(iconID).innerText = "bookmark_border";
+                    document.getElementById(iconID).innerText = "favorite_border";
                 });
         } else {
             // If it does not exist, then add it
@@ -101,7 +101,7 @@ function updateBookmark(id) {
                     console.log("This bookmark is for" + currentUser);
                     var iconID = "save-" + id;
                     console.log(iconID);
-                    document.getElementById(iconID).innerText = "bookmark";
+                    document.getElementById(iconID).innerText = "favorite";
                 });
         }
     });
