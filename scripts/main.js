@@ -51,7 +51,7 @@ function writeProducts() {
         name: "Strawberry jam",
         store: "store3",  // get from database
         price: 5.49,
-        ingredients: firebase.firestore.FieldValue.arrayUnion("coffee beans", "preservatives", "sugar"),
+        ingredients: firebase.firestore.FieldValue.arrayUnion("sugar", "strawberries", "concentrated lemon juice", "pectin"),
         packaging: firebase.firestore.FieldValue.arrayUnion("glass", "paper", "nylon"),
 
     });
