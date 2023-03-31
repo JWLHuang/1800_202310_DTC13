@@ -259,7 +259,7 @@ function populateStoresByOpeningHours() {
 
     // let params = new URL(window.location.href) //get the url from the searchbar
 
-    db.collection("stores").orderBy("close").get()
+    db.collection("stores").orderBy("open").get()
         .then(allStores => {
             stores = allStores.docs;
             console.log(stores);

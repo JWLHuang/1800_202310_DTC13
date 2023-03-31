@@ -45,7 +45,7 @@ function displayproductInfo() {
             imgEvent.src = "./images/" + productCode + ".jpg";
 
             document.querySelector("i").id = "save-" + docID
-            document.querySelector("i").onclick = () => saveBookmark(docID)
+            document.querySelector("i").onclick = () => updateBookmark(docID)
 
             currentUser.get().then(userDoc => {
                 //get the user name
@@ -58,45 +58,83 @@ function displayproductInfo() {
 }
 displayproductInfo();
 
-function saveBookmark(storeID) {
-    currentUser.get().then(userDoc => {
-        //get the user name
-        var bookmarks = userDoc.data().bookmarks;
-        if (bookmarks.includes(storeID)) {
-            removeBookmark(storeID);
-            document.getElementById('save-' + storeID).innerText = 'bookmark_border';
-        } else {
-            currentUser.set({
-                bookmarks: firebase.firestore.FieldValue.arrayUnion(storeID)
-            }, {
-                merge: true
-            })
+function updateBookmark(id) {
+    currentUser.get().then((userDoc) => {
+        let bookmarksNow = userDoc.data().bookmarks;
+        // console.log(bookmarksNow)
+
+        // Check if bookmarksNow is defined and if this bookmark already exists in Firestore
+        if (bookmarksNow && bookmarksNow.includes(id)) {
+            console.log(id);
+            // If it does exist, then remove it
+            currentUser
+                .update({
+                    bookmarks: firebase.firestore.FieldValue.arrayRemove(id),
+                })
                 .then(function () {
-                    console.log("bookmark has been saved for: " + currentUser);
-                    var iconID = 'save-' + storeID;
-                    //console.log(iconID);
-                    //this is to change the icon of the hike that was saved to "filled"
-                    document.getElementById(iconID).innerText = 'bookmark';
+                    console.log("This bookmark is removed for" + currentUser);
+                    var iconID = "save-" + id;
+                    console.log(iconID);
+                    document.getElementById(iconID).innerText = "bookmark_border";
+                });
+        } else {
+            // If it does not exist, then add it
+            currentUser
+                .set(
+                    {
+                        bookmarks: firebase.firestore.FieldValue.arrayUnion(id),
+                    },
+                    {
+                        merge: true,
+                    }
+                )
+                .then(function () {
+                    console.log("This bookmark is for" + currentUser);
+                    var iconID = "save-" + id;
+                    console.log(iconID);
+                    document.getElementById(iconID).innerText = "bookmark";
                 });
         }
-    })
+    });
 }
+// function saveBookmark(storeID) {
+//     currentUser.get().then(userDoc => {
+//         //get the user name
+//         var bookmarks = userDoc.data().bookmarks;
+//         if (bookmarks.includes(storeID)) {
+//             removeBookmark(storeID);
+//             document.getElementById('save-' + storeID).innerText = 'bookmark_border';
+//         } else {
+//             currentUser.set({
+//                 bookmarks: firebase.firestore.FieldValue.arrayUnion(storeID)
+//             }, {
+//                 merge: true
+//             })
+//                 .then(function () {
+//                     console.log("bookmark has been saved for: " + currentUser);
+//                     var iconID = 'save-' + storeID;
+//                     //console.log(iconID);
+//                     //this is to change the icon of the hike that was saved to "filled"
+//                     document.getElementById(iconID).innerText = 'bookmark';
+//                 });
+//         }
+//     })
+// }
 
-function removeBookmark(storeID) {
-    console.log("REMOVE bookmark function reached")
-    currentUser.set({
-        bookmarks: firebase.firestore.FieldValue.arrayRemove(storeID)
-    }, {
-        merge: true
-    })
-        .then(function () {
-            console.log("bookmark has been removed for: " + currentUser);
-            var iconID = storeID;
-            //console.log(iconID);
-            //this is to change the icon of the hike that was saved to "filled"
-            document.getElementById(iconID).innerText = 'bookmark_boarde';
-        });
-}
+// function removeBookmark(storeID) {
+//     console.log("REMOVE bookmark function reached")
+//     currentUser.set({
+//         bookmarks: firebase.firestore.FieldValue.arrayRemove(storeID)
+//     }, {
+//         merge: true
+//     })
+//         .then(function () {
+//             console.log("bookmark has been removed for: " + currentUser);
+//             //console.log(iconID);
+//             //this is to change the icon of the hike that was saved to "filled"
+//             document.getElementById('save-' + storeID).innerText = 'bookmark_border';
+//         });
+// }
 
 function saveProductDocumentIDAndRedirect() {
     let params = new URL(window.location.href) //get the url from the search bar
