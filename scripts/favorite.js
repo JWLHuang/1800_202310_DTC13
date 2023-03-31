@@ -21,11 +21,6 @@ function insertName() {
                 //get the user name
                 var userName = userDoc.data().name;
                 console.log(userName);
-                //$("#name-goes-here").text(userName); //jquery
-                // document.getElementById("name-goes-here").innerText = userName;
-                //method #1:  insert with html only
-                //document.getElementById("name-goes-here").innerText = user_Name;    //using javascript
-                //method #2:  insert using jquery
                 $(".name-goes-here").text(userName); //using jquery
             })
         }
@@ -129,40 +124,3 @@ function updateBookmark(id) {
         }
     });
 }
-// function saveBookmark(storeID) {
-//     currentUser.get().then(userDoc => {
-//         //get the user name
-//         var bookmarks = userDoc.data().bookmarks;
-//         if (bookmarks.includes(storeID)) {
-//             removeBookmark(storeID);
-//             document.getElementById('save-' + storeID).innerText = 'bookmark_border';
-//         } else {
-//             currentUser.set({
-//                 bookmarks: firebase.firestore.FieldValue.arrayUnion(storeID)
-//             }, {
-//                 merge: true
-//             })
-//                 .then(function () {
-//                     console.log("bookmark has been saved for: " + currentUser);
-//                     //console.log(iconID);
-//                     //this is to change the icon of the hike that was saved to "filled"
-//                     document.getElementById('save-' + storeID).innerText = 'bookmark';
-//                 });
-//         }
-//     })
-// }
-
-// function removeBookmark(storeID) {
-//     console.log("REMOVE bookmark function reached")
-//     currentUser.set({
-//         bookmarks: firebase.firestore.FieldValue.arrayRemove(storeID)
-//     }, {
-//         merge: true
-//     })
-//         .then(function () {
-//             console.log("bookmark has been removed for: " + currentUser);
-//             //console.log(iconID);
-//             //this is to change the icon of the hike that was saved to "filled"
-//             document.getElementById('save-' + storeID).innerText = 'bookmark_border';
-//         });
-// }
