@@ -138,7 +138,7 @@ function sortLowHigh() {
     $("#products-go-here").empty()
     let cardTemplate = document.getElementById("productCardTemplate");
 
-    db.collection("products").orderBy("price", "desc").get()   //the collection called "products"
+    db.collection("products").orderBy("price").get()   //the collection called "products"
         .then(allproducts => {
             //var i = 1;  //Optional: if you want to have a unique ID for each product
             allproducts.forEach(doc => { //iterate thru each doc
@@ -153,10 +153,10 @@ function sortLowHigh() {
 
                 //update title and text and image
                 newcard.querySelector('.card-name').innerHTML = productName;
-                newcard.querySelector('.card-store').innerHTML = productStore;
+                // newcard.querySelector('.card-store').innerHTML = productStore;
                 newcard.querySelector('.card-price').innerHTML = productPrice;
-                newcard.querySelector('.card-text').innerHTML = productIngredients;
-                newcard.querySelector('.card-time').innerHTML = productTime;
+                // newcard.querySelector('.card-text').innerHTML = productIngredients;
+                // newcard.querySelector('.card-time').innerHTML = productTime;
                 newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: cake.jpg
                 newcard.querySelector('a').href = "product.html?docID=" + docID;
 
@@ -173,7 +173,7 @@ function sortHighLow() {
     let cardTemplate = document.getElementById("productCardTemplate");
     let productCardGroup = document.getElementById("productCardGroup");
 
-    db.collection("products").orderBy("price").get()   //the collection called "products"
+    db.collection("products").orderBy("price", "desc").get()   //the collection called "products"
         .then(allproducts => {
             //var i = 1;  //Optional: if you want to have a unique ID for each product
             allproducts.forEach(doc => { //iterate thru each doc
@@ -188,10 +188,10 @@ function sortHighLow() {
 
                 //update title and text and image
                 newcard.querySelector('.card-name').innerHTML = productName;
-                newcard.querySelector('.card-store').innerHTML = productStore;
+                // newcard.querySelector('.card-store').innerHTML = productStore;
                 newcard.querySelector('.card-price').innerHTML = productPrice;
-                newcard.querySelector('.card-text').innerHTML = productIngredients;
-                newcard.querySelector('.card-time').innerHTML = productTime;
+                // newcard.querySelector('.card-text').innerHTML = productIngredients;
+                // newcard.querySelector('.card-time').innerHTML = productTime;
                 newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: cake.jpg
                 newcard.querySelector('a').href = "product.html?docID=" + docID;
                 // productCardGroup.appendchild(newcard);
