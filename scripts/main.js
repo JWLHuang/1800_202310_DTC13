@@ -86,7 +86,6 @@ function displayCardsDynamically() {
 
     db.collection("products").orderBy("name").get()   //the collection called "products"
         .then(allproducts => {
-            //var i = 1;  //Optional: if you want to have a unique ID for each product
             allproducts.forEach(doc => { //iterate thru each doc
                 var productCode = doc.data().code;    //get unique ID to each product to be used for fetching right image
                 var productName = doc.data().name;       // get value of the "name" key
@@ -103,26 +102,13 @@ function displayCardsDynamically() {
                 // newcard.querySelector('.card-text').innerHTML = productIngredients;
                 newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: cake.jpg
                 newcard.querySelector('a').href = "product.html?docID=" + docID;
-
-                document.querySelector("i").id = "save-" + docID
-                document.querySelector("i").onclick = () => updateShoppingCart(docID)
-
-                currentUser.get().then(userDoc => {
-                    //get the user name
-                    var bookmarks = userDoc.data().bookmarks;
-                    if (bookmarks.includes(docID)) {
-                        document.getElementById('save-' + docID).innerText = 'bookmark';
-                    }
-                })
-                //Optional: give unique ids to all elements for future use
-                // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
-                // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
-                // newcard.querySelector('.card-image').setAttribute("id", "cimage" + i);
+                // sets icon in the product 
+                newcard.querySelector('i').id = "save-" + docID;
 
                 //attach to gallery
                 document.getElementById("products-go-here").appendChild(newcard);
-
-                //i++;   //Optional: iterate variable to serve as unique ID
+                // attach updateShoppingCart function to the button
+                document.getElementById(`save-${docID}`).onclick = () => updateShoppingCart(docID);
             })
         })
 }
@@ -173,13 +159,6 @@ function sortLowHigh() {
                 document.querySelector("i").id = "save-" + docID
                 document.querySelector("i").onclick = () => updateShoppingCart(docID)
 
-                currentUser.get().then(userDoc => {
-                    //get the user name
-                    var bookmarks = userDoc.data().bookmarks;
-                    if (bookmarks.includes(docID)) {
-                        document.getElementById('save-' + docID).innerText = 'bookmark';
-                    }
-                })
                 //attach to gallery
                 document.getElementById("products-go-here").appendChild(newcard);
 
@@ -219,20 +198,12 @@ function sortHighLow() {
                 document.getElementById("products-go-here").appendChild(newcard);
                 document.querySelector("i").id = "save-" + docID
                 document.querySelector("i").onclick = () => updateShoppingCart(docID)
-
-                currentUser.get().then(userDoc => {
-                    //get the user name
-                    var bookmarks = userDoc.data().bookmarks;
-                    if (bookmarks.includes(docID)) {
-                        document.getElementById('save-' + docID).innerText = 'bookmark';
-                    }
-                })
             })
         })
 }
 
 function updateShoppingCart(id) {
-    console.log("updateShoppingCart clicked")
+    console.log("updateShoppingCart clicked with id", id)
     currentUser.get().then((userDoc) => {
         let cartNow = userDoc.data().shopCart;
         let params = new URL(window.location.href); //get URL of search bar
@@ -241,21 +212,19 @@ function updateShoppingCart(id) {
 
         // Check if bookmarksNow is defined and if this bookmark already exists in Firestore
         if (cartNow && cartNow.includes(id)) {
-            console.log(id);
+            console.log("Removing from cart:", id);
             // If it does exist, then remove it
             currentUser
                 .update({
                     shopCart: firebase.firestore.FieldValue.arrayRemove(id),
                 })
                 .then(function () {
-                    console.log("This item in cart is removed for" + currentUser);
                     var iconID = "save-" + id;
-                    console.log(iconID);
                     document.getElementById(iconID).innerText = "add_shopping_cart";
                 });
         } else {
+            console.log("Adding to cart:", id);
             // If it does not exist, then add it
-            console.log(id);
             currentUser
                 .set(
                     {
@@ -266,9 +235,7 @@ function updateShoppingCart(id) {
                     }
                 )
                 .then(function () {
-                    console.log("This item in cart is for" + currentUser);
                     var iconID = "save-" + id;
-                    console.log(iconID);
                     document.getElementById(iconID).innerText = "remove_shopping_cart";
                 });
         }
