@@ -36,6 +36,7 @@
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
 
+
 </head>
 
 <body>
@@ -45,66 +46,39 @@
     <!-- navbar -->
     <nav id="navbarPlaceholder"></nav>
 
-    <!-- product details -->
+    <!-- main content -->
     <div class="container">
-        <div class="card text-center">
-            <h1><span id="productName">this product</span></h1>
-            <div class="position-relative">
-                <img class="product-img responsive card-image card-img-top" src="" alt="product photo">
-                <button class="btn btn-primary position-absolute bottom-0 end-0 m-3"
-                    onclick="saveProductDocumentIDAndRedirect()">Write Review</button>
-            </div>
-            <p>
-                <span class="product_text_size">Price:</span>
-                <span class="card-price">price</span><br>
-                <span class="product_text_size">Location:</span>
-                <span class="card-store">location</span><br>
-                <span class="product_text_size"> Ingredients:</span>
-                <span class="card-ingredients">ingredients</span><br>
-                <span class="product_text_size"> Packaging Materials:</span>
-                <span class="card-packaging">packaging</span>
-            </p>
-            <p><i class="material-icons" id="bookmark">favorite_border</i></p>
-            <p><i class="material-icons" id="shopCart">add_shopping_cart</i></p>
-            <a href="map.html" class="btn btn-primary">Store Direction</a>
-        </div>
-    </div>
-
-    <!-- Reviews -->
-    <div class="container">
-        <h2>Reviews:</h2>
-        <div id="details-go-here"></div>
+        <h1 style="text-align: center;">Shopping list <span id=name-goes-here></span></h1>
+        <button onclick="clearCart()" type="button" class="btn btn-secondary">Clear shopping cart</button>
         <!-- Here is container for cards  -->
         <div class="container">
-            <div id="reviewCardGroup" class="row row-cols-auto">
+            <div id="savedProductsCardGroup" class="row row-cols-auto">
             </div>
         </div>
     </div>
 
-    <!-- template for review card -->
-    <template id="reviewCardTemplate">
-        <div class="card bg-secondary">
-            <img class="card-img-top">
-            <div class="card-body bg-light">
-                <h5 class="userName">placeholder</h5>
-                <h5 class="title">placeholder</h5>
-                <p class="time">placeholder</p>
-                <p class="productRating">placeholder</p>
-                <p class="environmentRating">placeholder</p>
-                <p class="healthRating">placeholder</p>
-                <br>
-                <p class="description">This card has supporting text below as a natural lead-in to additional content.
-                </p>
-                <p class="rebuyRating">placeholder</p>
+
+    <!-- Templates for general use, not displayed -->
+    <template id="savedCardTemplate">
+        <div class="card py-2 mx-2 bg-light" style="width: 10 rem">
+            <img class="card-image card-img-top" src=" ..." alt="...">
+            <div class="card-body">
+                <h5 class="card-name">Card name</h5>
+                <p>Price:  <span class="card-price">placeholder</span></p> 
+                <!-- <p class="card-ingredient">placeholder</p> -->
+                <i class="material-icons">remove_shopping_cart</i>
+                <br><br>
+                <a class="btn btn-secondary card-href" id="read-more">Read more</a>
             </div>
         </div>
     </template>
 
     <!-- copyright footer -->
     <footer id="copyrightPlaceholder"></footer>
-
+    
     <!-- sticky footer -->
     <footer id="footerPlaceholder"></footer>
+
 
     <!------------------------------>
 
@@ -115,7 +89,7 @@
     <!-- Link to scripts of your own -->
     <script src="./scripts/firebase.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/product.js"></script>
+    <script src="./scripts/shopping_cart.js"></script>
     <script src="./scripts/script.js"></script>
 
 </body>

@@ -83,6 +83,7 @@ function displayCardsDynamically() {
     $("#products-go-here").empty()
     let cardTemplate = document.getElementById("productCardTemplate");
 
+
     db.collection("products").orderBy("name").get()   //the collection called "products"
         .then(allproducts => {
             //var i = 1;  //Optional: if you want to have a unique ID for each product
@@ -103,6 +104,16 @@ function displayCardsDynamically() {
                 newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: cake.jpg
                 newcard.querySelector('a').href = "product.html?docID=" + docID;
 
+                document.querySelector("i").id = "save-" + docID
+                document.querySelector("i").onclick = () => updateShoppingCart(docID)
+
+                currentUser.get().then(userDoc => {
+                    //get the user name
+                    var bookmarks = userDoc.data().bookmarks;
+                    if (bookmarks.includes(docID)) {
+                        document.getElementById('save-' + docID).innerText = 'bookmark';
+                    }
+                })
                 //Optional: give unique ids to all elements for future use
                 // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
                 // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
@@ -159,7 +170,16 @@ function sortLowHigh() {
                 // newcard.querySelector('.card-time').innerHTML = productTime;
                 newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: cake.jpg
                 newcard.querySelector('a').href = "product.html?docID=" + docID;
+                document.querySelector("i").id = "save-" + docID
+                document.querySelector("i").onclick = () => updateShoppingCart(docID)
 
+                currentUser.get().then(userDoc => {
+                    //get the user name
+                    var bookmarks = userDoc.data().bookmarks;
+                    if (bookmarks.includes(docID)) {
+                        document.getElementById('save-' + docID).innerText = 'bookmark';
+                    }
+                })
                 //attach to gallery
                 document.getElementById("products-go-here").appendChild(newcard);
 
@@ -197,7 +217,60 @@ function sortHighLow() {
                 // productCardGroup.appendchild(newcard);
                 //attach to gallery
                 document.getElementById("products-go-here").appendChild(newcard);
+                document.querySelector("i").id = "save-" + docID
+                document.querySelector("i").onclick = () => updateShoppingCart(docID)
 
+                currentUser.get().then(userDoc => {
+                    //get the user name
+                    var bookmarks = userDoc.data().bookmarks;
+                    if (bookmarks.includes(docID)) {
+                        document.getElementById('save-' + docID).innerText = 'bookmark';
+                    }
+                })
             })
         })
+}
+
+function updateShoppingCart(id) {
+    console.log("updateShoppingCart clicked")
+    currentUser.get().then((userDoc) => {
+        let cartNow = userDoc.data().shopCart;
+        let params = new URL(window.location.href); //get URL of search bar
+        let ID = params.searchParams.get("docID"); //get value for key "id"
+        // console.log(cartNow)
+
+        // Check if bookmarksNow is defined and if this bookmark already exists in Firestore
+        if (cartNow && cartNow.includes(id)) {
+            console.log(id);
+            // If it does exist, then remove it
+            currentUser
+                .update({
+                    shopCart: firebase.firestore.FieldValue.arrayRemove(id),
+                })
+                .then(function () {
+                    console.log("This item in cart is removed for" + currentUser);
+                    var iconID = "save-" + id;
+                    console.log(iconID);
+                    document.getElementById(iconID).innerText = "add_shopping_cart";
+                });
+        } else {
+            // If it does not exist, then add it
+            console.log(id);
+            currentUser
+                .set(
+                    {
+                        shopCart: firebase.firestore.FieldValue.arrayUnion(id),
+                    },
+                    {
+                        merge: true,
+                    }
+                )
+                .then(function () {
+                    console.log("This item in cart is for" + currentUser);
+                    var iconID = "save-" + id;
+                    console.log(iconID);
+                    document.getElementById(iconID).innerText = "remove_shopping_cart";
+                });
+        }
+    });
 }
