@@ -52,9 +52,9 @@
         <img class="d-block mx-auto mb-4" src="./images/logo.png" alt="EcoKart Logo" width="200">
         <h1 class="display-5 fw-bold">Products for <span class="name-goes-here">Name</span></h1>
     </div>
-    
+
     <a href="favorite.html" class="btn btn-primary">See your favorites</a>
-    
+
     <div class="container">
         <h1 class="center_text">Some recommended products</h1>
         <!-- Here is the container for cards  -->
@@ -64,9 +64,12 @@
                 Sort By
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <button class="dropdown-item" type="button" id="Alpha" onclick="displayCardsDynamically()">Alphabetical (Default)</button>
-                <button class="dropdown-item" type="button" id="Price (Lowest to Highest)" onclick="sortLowHigh()">Price (Lowest to Highest)</button>
-                <button class="dropdown-item" type="button" id="PriceHigh" onclick="sortHighLow()">Price (Highest to Lowest)</button>
+                <button class="dropdown-item" type="button" id="Alpha" onclick="displayCardsDynamically()">Alphabetical
+                    (Default)</button>
+                <button class="dropdown-item" type="button" id="Price (Lowest to Highest)" onclick="sortLowHigh()">Price
+                    (Lowest to Highest)</button>
+                <button class="dropdown-item" type="button" id="PriceHigh" onclick="sortHighLow()">Price (Highest to
+                    Lowest)</button>
             </div>
         </div>
         <div class="container">
@@ -74,20 +77,21 @@
             </div>
         </div>
     </div>
-    
+
 
     <template id="productCardTemplate">
         <div class="card-group">
             <div class="card text-center">
-                <img class="card-image card-img-top product_image" src="..." alt="..." >
-                <i class="material-symbols-outlined position-absolute top-0 end-0 m-3" onclick="updateShoppingCart()">add_shopping_cart</i>
+                <i class="material-icons position-absolute top-1 end-1 m-3 favorite">favorite</i>
+                <img class="card-image card-img-top product_image" src="..." alt="...">
+                <i class="material-symbols-outlined position-absolute top-0 end-0 m-3 cart">add_shopping_cart</i>
                 <div class="card-body">
                     <h5 class="card-name"> Product # </h5>
                     <p>
                         <span class="product_text_size">Price:</span>
                         <span class="card-price">price</span><br>
                     </p>
-                    <a class="btn btn-primary card-href">See more</a> 
+                    <a class="btn btn-primary card-href">See more</a>
                 </div>
             </div>
         </div>
