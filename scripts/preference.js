@@ -62,7 +62,6 @@ function displayPreferences(collection) {
         .then(allPreferences => {
             allPreferences.forEach(doc => {
                 var preference = doc.id;
-                console.log(preference)
                 let newcard = cardTemplate.content.cloneNode(true);
 
                 newcard.querySelector(".card-title").innerHTML = preference;
@@ -72,8 +71,7 @@ function displayPreferences(collection) {
 
                 currentUser.get().then(userDoc => {
                     var preferences = userDoc.data().preferences;
-                    console.log(preferences)
-                    if (preferences.includes(preference)) {
+                    if (preferences && preferences.includes(preference)) {
                         document.getElementById('update-' + preference).innerText = 'cancel';
                     }
                 })
@@ -87,7 +85,7 @@ function updatePreferences(preference) {
     console.log("clicked!")
     currentUser.get().then(userDoc => {
         var preferences = userDoc.data().preferences;
-        if (preferences.includes(preference)) {
+        if (preferences && preferences.includes(preference)) {
             currentUser.update({
                 preferences: firebase.firestore.FieldValue.arrayRemove(preference)
             }, {

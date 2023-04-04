@@ -1,6 +1,7 @@
 var currentUser;
 var currentBookmarks = [];
 var currentShopCart = [];
+var currentPreferences = [];
 
 function doAll() {
     firebase.auth().onAuthStateChanged(user => {
@@ -10,7 +11,7 @@ function doAll() {
             console.log(user.uid);
 
             insertName();
-            displayCardsDynamically();;
+            displayCardsDynamically();
         } else {
             console.log("No user is signed in.")
             window.location.href = "login.html";
@@ -27,6 +28,7 @@ function insertName() {
         $(".name-goes-here").text(userName); //using jquery
         currentBookmarks = userDoc.data().bookmarks;
         currentShopCart = userDoc.data().shopCart;
+        currentPreferences = userDoc.data().preferences;
     })
 }
 function writeProducts() {
@@ -100,7 +102,7 @@ function displayCardsDynamically() {
     currentUser.get().then(userDoc => {
         var preferences = userDoc.data().preferences;
         console.log(preferences);
-        if (preferences.length != 0) {
+        if (preferences && preferences.length != 0) {
             db.collection("products").where("ingredients", "array-contains-any", preferences).get()
                 .then(avoidedProducts => {
                     filterList = [];
@@ -212,7 +214,7 @@ function sortLowHigh() {
     currentUser.get().then(userDoc => {
         var preferences = userDoc.data().preferences;
         console.log(preferences);
-        if (preferences.length != 0) {
+        if (preferences && preferences.length != 0) {
             db.collection("products").where("ingredients", "array-contains-any", preferences).get()
                 .then(avoidedProducts => {
                     filterList = [];
@@ -321,7 +323,7 @@ function sortHighLow() {
     currentUser.get().then(userDoc => {
         var preferences = userDoc.data().preferences;
         console.log(preferences);
-        if (preferences.length != 0) {
+        if (preferences && preferences.length != 0) {
             db.collection("products").where("ingredients", "array-contains-any", preferences).get()
                 .then(avoidedProducts => {
                     filterList = [];
