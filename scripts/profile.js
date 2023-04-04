@@ -157,8 +157,7 @@ function deleteUser() {
     firebase.auth().onAuthStateChanged(user => {
 
         // Double check! Usability Heuristics #5
-        var result = confirm("WARNING " + user.displayName +
-            ": Deleting your User Account!!");
+        var result = confirm("WARNING " +  ": Are you sure you want to DELETE your account!!");
 
         // If confirmed, then go ahead
         if (result) {

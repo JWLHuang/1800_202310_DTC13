@@ -48,8 +48,13 @@
 
     <!-- main content -->
     <div class="container">
-        <h1 style="text-align: center;">Shopping list <span id=name-goes-here></span></h1>
-        <button onclick="clearCart()" type="button" class="btn btn-secondary">Clear shopping cart</button>
+        <div class="shopping-cart-header d-flex justify-content-between">
+            <h1 style="text-align: center;">Shopping list <span id=name-goes-here></span></h1>
+            <button onclick="clearCart()" type="button"
+                class="btn btn-secondary text-right d-flex justify-content-between" id="clear-cart-button">Clear
+                shopping cart
+            </button>
+        </div>
         <!-- Here is container for cards  -->
         <div class="container">
             <div id="savedProductsCardGroup" class="row row-cols-auto">
@@ -64,7 +69,7 @@
             <img class="card-image card-img-top" src=" ..." alt="...">
             <div class="card-body">
                 <h5 class="card-name">Card name</h5>
-                <p>Price:  <span class="card-price">placeholder</span></p> 
+                <p>Price: <span class="card-price">placeholder</span></p>
                 <!-- <p class="card-ingredient">placeholder</p> -->
                 <i class="material-icons">remove_shopping_cart</i>
                 <br><br>
@@ -75,7 +80,7 @@
 
     <!-- copyright footer -->
     <footer id="copyrightPlaceholder"></footer>
-    
+
     <!-- sticky footer -->
     <footer id="footerPlaceholder"></footer>
 
