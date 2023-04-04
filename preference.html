@@ -45,7 +45,25 @@
     <!------------------------------>
 
     <!-- main content -->
-    preferences
+    <h1 style="text-align: center;">Preferences</h1><br>
+    
+    <div class="container">
+        <h2>Check the things you want to avoid!</h2><br>
+        <div class="container">
+            <div id="preferencelist-go-here" class="row row-cols-auto">
+            </div>
+        </div>
+    </div>
+
+    <template id="preferenceCardTemplate">
+        <div class="card py-2 mx-2" style="width: 18rem">
+            <div class="card-body">
+                <i class="material-icons">check_circle_outline</i>
+                <span class="card-title" style="vertical-align:top;">sample item</span><br>
+            </div>
+        </div>
+    </template>
+
 
     <!------------------------------>
 
@@ -56,7 +74,7 @@
     <!-- Link to scripts of your own -->
     <script src="./scripts/firebase.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <!-- <script src="./scripts/template.js"></script> -->
+    <script src="./scripts/preference.js"></script>
     <script src="./scripts/script.js"></script>
 
 </body>
