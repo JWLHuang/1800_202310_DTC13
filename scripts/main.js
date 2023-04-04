@@ -1,11 +1,13 @@
 var currentUser;
+var currentBookmarks = [];
+var currentShopCart = [];
 
 function doAll() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if a user is signed in:
         if (user) {
             currentUser = db.collection("users").doc(user.uid);
-            console.log(currentUser);
+            console.log(user.uid);
 
             insertName();
             displayCardsDynamically();;
@@ -23,6 +25,8 @@ function insertName() {
         var userName = userDoc.data().name;
         console.log(userName);
         $(".name-goes-here").text(userName); //using jquery
+        currentBookmarks = userDoc.data().bookmarks;
+        currentShopCart = userDoc.data().shopCart;
     })
 }
 function writeProducts() {
@@ -123,7 +127,29 @@ function displayCardsDynamically() {
                                 newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: cake.jpg
                                 newcard.querySelector('a').href = "product.html?docID=" + docID;
 
+                                // sets icon in the product
+                                newcard.querySelector('i.cart').id = "save-" + docID;
+                                newcard.querySelector('i.favorite').id = "fav-" + docID;
+
+                                //attach to gallery
                                 document.getElementById("products-go-here").appendChild(newcard);
+
+                                // attach updateShoppingCart function to the shopping cart button
+                                document.getElementById(`save-${docID}`).onclick = () => updateShoppingCart(docID);
+                                // attach updateFavorite function to the favorite button
+                                document.getElementById(`fav-${docID}`).onclick = () => updateFavorite(docID);
+                                // check if the product is in the user's shopping cart
+                                if (currentShopCart && currentShopCart.includes(docID)) {
+                                    document.getElementById(`save-${docID}`).innerText = 'remove_shopping_cart';
+                                } else {
+                                    document.getElementById(`save-${docID}`).innerText = 'add_shopping_cart';
+                                }
+                                // check if the product is in the user's bookmarks
+                                if (currentBookmarks && currentBookmarks.includes(docID)) {
+                                    document.getElementById(`fav-${docID}`).innerText = 'favorite';
+                                } else {
+                                    document.getElementById(`fav-${docID}`).innerText = 'favorite_border';
+                                }
                             })
                         })
                 })
@@ -147,8 +173,29 @@ function displayCardsDynamically() {
                         newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: cake.jpg
                         newcard.querySelector('a').href = "product.html?docID=" + docID;
 
+                        // sets icon in the product
+                        newcard.querySelector('i.cart').id = "save-" + docID;
+                        newcard.querySelector('i.favorite').id = "fav-" + docID;
+
                         //attach to gallery
                         document.getElementById("products-go-here").appendChild(newcard);
+
+                        // attach updateShoppingCart function to the shopping cart button
+                        document.getElementById(`save-${docID}`).onclick = () => updateShoppingCart(docID);
+                        // attach updateFavorite function to the favorite button
+                        document.getElementById(`fav-${docID}`).onclick = () => updateFavorite(docID);
+                        // check if the product is in the user's shopping cart
+                        if (currentShopCart && currentShopCart.includes(docID)) {
+                            document.getElementById(`save-${docID}`).innerText = 'remove_shopping_cart';
+                        } else {
+                            document.getElementById(`save-${docID}`).innerText = 'add_shopping_cart';
+                        }
+                        // check if the product is in the user's bookmarks
+                        if (currentBookmarks && currentBookmarks.includes(docID)) {
+                            document.getElementById(`fav-${docID}`).innerText = 'favorite';
+                        } else {
+                            document.getElementById(`fav-${docID}`).innerText = 'favorite_border';
+                        }
 
                     })
                 })
@@ -157,23 +204,9 @@ function displayCardsDynamically() {
     })
 }
 
-function saveFavourite(favouriteID) {
-    currentUser.set({
-        bookmarks: firebase.firestore.FieldValue.arrayUnion(favouriteID)
-    }, {
-        merge: true
-    })
-        .then(function () {
-            console.log("bookmark has been saved for: " + currentUser);
-            var iconID = 'save-' + favouriteID;
-            //console.log(iconID);
-            //this is to change the icon of the hike that was saved to "filled"
-            document.getElementById(iconID).innerText = 'favourite';
-        });
-}
 
 function sortLowHigh() {
-    console.log("lowHigh clicked")
+    console.log("sortLowHigh clicked")
     $("#products-go-here").empty()
     let cardTemplate = document.getElementById("productCardTemplate");
     currentUser.get().then(userDoc => {
@@ -206,7 +239,28 @@ function sortLowHigh() {
                                 newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: cake.jpg
                                 newcard.querySelector('a').href = "product.html?docID=" + docID;
 
+                                // sets icon in the product
+                                newcard.querySelector('i.cart').id = "save-" + docID;
+                                newcard.querySelector('i.favorite').id = "fav-" + docID;
+
                                 document.getElementById("products-go-here").appendChild(newcard);
+
+                                // attach updateShoppingCart function to the shopping cart button
+                                document.getElementById(`save-${docID}`).onclick = () => updateShoppingCart(docID);
+                                // attach updateFavorite function to the favorite button
+                                document.getElementById(`fav-${docID}`).onclick = () => updateFavorite(docID);
+                                // check if the product is in the user's shopping cart
+                                if (currentShopCart && currentShopCart.includes(docID)) {
+                                    document.getElementById(`save-${docID}`).innerText = 'remove_shopping_cart';
+                                } else {
+                                    document.getElementById(`save-${docID}`).innerText = 'add_shopping_cart';
+                                }
+                                // check if the product is in the user's bookmarks
+                                if (currentBookmarks && currentBookmarks.includes(docID)) {
+                                    document.getElementById(`fav-${docID}`).innerText = 'favorite';
+                                } else {
+                                    document.getElementById(`fav-${docID}`).innerText = 'favorite_border';
+                                }
                             })
                         })
                 })
@@ -230,8 +284,28 @@ function sortLowHigh() {
                         newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: cake.jpg
                         newcard.querySelector('a').href = "product.html?docID=" + docID;
 
-                        //attach to gallery
+                        // sets icon in the product
+                        newcard.querySelector('i.cart').id = "save-" + docID;
+                        newcard.querySelector('i.favorite').id = "fav-" + docID;
+
                         document.getElementById("products-go-here").appendChild(newcard);
+
+                        // attach updateShoppingCart function to the shopping cart button
+                        document.getElementById(`save-${docID}`).onclick = () => updateShoppingCart(docID);
+                        // attach updateFavorite function to the favorite button
+                        document.getElementById(`fav-${docID}`).onclick = () => updateFavorite(docID);
+                        // check if the product is in the user's shopping cart
+                        if (currentShopCart && currentShopCart.includes(docID)) {
+                            document.getElementById(`save-${docID}`).innerText = 'remove_shopping_cart';
+                        } else {
+                            document.getElementById(`save-${docID}`).innerText = 'add_shopping_cart';
+                        }
+                        // check if the product is in the user's bookmarks
+                        if (currentBookmarks && currentBookmarks.includes(docID)) {
+                            document.getElementById(`fav-${docID}`).innerText = 'favorite';
+                        } else {
+                            document.getElementById(`fav-${docID}`).innerText = 'favorite_border';
+                        }
 
                     })
                 })
@@ -241,7 +315,7 @@ function sortLowHigh() {
 }
 
 function sortHighLow() {
-    console.log("highLow clicked")
+    console.log("sortHighLow clicked")
     $("#products-go-here").empty()
     let cardTemplate = document.getElementById("productCardTemplate");
     currentUser.get().then(userDoc => {
@@ -274,12 +348,33 @@ function sortHighLow() {
                                 newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: cake.jpg
                                 newcard.querySelector('a').href = "product.html?docID=" + docID;
 
+                                // sets icon in the product
+                                newcard.querySelector('i.cart').id = "save-" + docID;
+                                newcard.querySelector('i.favorite').id = "fav-" + docID;
+
                                 document.getElementById("products-go-here").appendChild(newcard);
+
+                                // attach updateShoppingCart function to the shopping cart button
+                                document.getElementById(`save-${docID}`).onclick = () => updateShoppingCart(docID);
+                                // attach updateFavorite function to the favorite button
+                                document.getElementById(`fav-${docID}`).onclick = () => updateFavorite(docID);
+                                // check if the product is in the user's shopping cart
+                                if (currentShopCart && currentShopCart.includes(docID)) {
+                                    document.getElementById(`save-${docID}`).innerText = 'remove_shopping_cart';
+                                } else {
+                                    document.getElementById(`save-${docID}`).innerText = 'add_shopping_cart';
+                                }
+                                // check if the product is in the user's bookmarks
+                                if (currentBookmarks && currentBookmarks.includes(docID)) {
+                                    document.getElementById(`fav-${docID}`).innerText = 'favorite';
+                                } else {
+                                    document.getElementById(`fav-${docID}`).innerText = 'favorite_border';
+                                }
                             })
                         })
                 })
         } else {
-            db.collection("products").orderBy("price","desc").get()   //the collection called "products"
+            db.collection("products").orderBy("price", "desc").get()   //the collection called "products"
                 .then(allproducts => {
                     allproducts.forEach(doc => { //iterate thru each doc
                         var productCode = doc.data().code;    //get unique ID to each product to be used for fetching right image
@@ -298,12 +393,109 @@ function sortHighLow() {
                         newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: cake.jpg
                         newcard.querySelector('a').href = "product.html?docID=" + docID;
 
+                        // sets icon in the product
+                        newcard.querySelector('i.cart').id = "save-" + docID;
+                        newcard.querySelector('i.favorite').id = "fav-" + docID;
+
                         //attach to gallery
                         document.getElementById("products-go-here").appendChild(newcard);
+
+                        // attach updateShoppingCart function to the shopping cart button
+                        document.getElementById(`save-${docID}`).onclick = () => updateShoppingCart(docID);
+                        // attach updateFavorite function to the favorite button
+                        document.getElementById(`fav-${docID}`).onclick = () => updateFavorite(docID);
+                        // check if the product is in the user's shopping cart
+                        if (currentShopCart && currentShopCart.includes(docID)) {
+                            document.getElementById(`save-${docID}`).innerText = 'remove_shopping_cart';
+                        } else {
+                            document.getElementById(`save-${docID}`).innerText = 'add_shopping_cart';
+                        }
+                        // check if the product is in the user's bookmarks
+                        if (currentBookmarks && currentBookmarks.includes(docID)) {
+                            document.getElementById(`fav-${docID}`).innerText = 'favorite';
+                        } else {
+                            document.getElementById(`fav-${docID}`).innerText = 'favorite_border';
+                        }
 
                     })
                 })
 
         }
     })
+}
+
+function updateShoppingCart(id) {
+    console.log("updateShoppingCart clicked with id", id)
+    currentUser.get().then((userDoc) => {
+        let cartNow = userDoc.data().shopCart;
+        // console.log(cartNow)
+
+        // Check if bookmarksNow is defined and if this bookmark already exists in Firestore
+        if (cartNow && cartNow.includes(id)) {
+            console.log("Removing from cart:", id);
+            // If it does exist, then remove it
+            currentUser
+                .update({
+                    shopCart: firebase.firestore.FieldValue.arrayRemove(id),
+                })
+                .then(function () {
+                    currentShopCart.filter(id => id !== id);
+                    document.getElementById(`save-${id}`).innerText = "add_shopping_cart";
+                });
+        } else {
+            console.log("Adding to cart:", id);
+            // If it does not exist, then add it
+            currentUser
+                .set(
+                    {
+                        shopCart: firebase.firestore.FieldValue.arrayUnion(id),
+                    },
+                    {
+                        merge: true,
+                    }
+                )
+                .then(function () {
+                    currentShopCart.push(id);
+                    document.getElementById(`save-${id}`).innerText = "remove_shopping_cart";
+                });
+        }
+    });
+}
+
+function updateFavorite(id) {
+    console.log("updateFavorite clicked with id", id)
+    currentUser.get().then((userDoc) => {
+        let bookmarksNow = userDoc.data().bookmarks;
+        // console.log(bookmarksNow)
+
+        // Check if bookmarksNow is defined and if this bookmark already exists in Firestore
+        if (bookmarksNow && bookmarksNow.includes(id)) {
+            console.log("Removing from bookmarks:", id);
+            // If it does exist, then remove it
+            currentUser
+                .update({
+                    bookmarks: firebase.firestore.FieldValue.arrayRemove(id),
+                })
+                .then(function () {
+                    currentBookmarks.filter(id => id !== id);
+                    document.getElementById(`fav-${id}`).innerText = "favorite_border";
+                });
+        } else {
+            console.log("Adding to bookmarks:", id);
+            // If it does not exist, then add it
+            currentUser
+                .set(
+                    {
+                        bookmarks: firebase.firestore.FieldValue.arrayUnion(id),
+                    },
+                    {
+                        merge: true,
+                    }
+                )
+                .then(function () {
+                    currentBookmarks.push(id);
+                    document.getElementById(`fav-${id}`).innerText = "favorite";
+                });
+        }
+    });
 }
