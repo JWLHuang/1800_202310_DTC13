@@ -33,6 +33,10 @@
     /* contrast to secondary colour */
 }
 
+.navbar-custom {
+    height: 60px;
+}
+
 .btn-primary {
     color: black;
     /* contrast to secondary colour */
