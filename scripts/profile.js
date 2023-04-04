@@ -134,7 +134,7 @@ function saveUserInfo() {
             birthday: userBirthday,
             address: userAddress,
             phone: userPhone,
-             
+
         })
             .then(() => {
                 console.log("Document successfully updated!");
@@ -201,3 +201,17 @@ function deleteUser() {
 //     })
 // }
 // chooseFileListener();
+
+$('.featureBtn').click(function () {
+    console.log("clicked");
+    if (document.getElementById("embedWindow").getAttribute("src") == "preference.html") {
+        $(".featureBtn").removeClass("border-bottom border-dark active_btn");
+        $("#preference").addClass("border-bottom border-dark active_btn");
+    } else if (document.getElementById("embedWindow").getAttribute("src") == "favorite.html") {
+        $(".featureBtn").removeClass("border-bottom border-dark active_btn");
+        $("#favorite").addClass("border-bottom border-dark active_btn");
+    } else {
+        $(".featureBtn").removeClass("border-bottom border-dark active_btn");
+        $("#history").addClass("border-bottom border-dark active_btn");
+    }
+})
