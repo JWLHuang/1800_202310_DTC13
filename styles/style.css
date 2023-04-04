@@ -35,7 +35,8 @@
 
 .navbar-custom {
     padding-top: 0px;
-    height: 70px;
+    height: 66px;
+    font-size: 0.7em
 }
 
 .btn-primary {
