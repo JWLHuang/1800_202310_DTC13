@@ -43,7 +43,7 @@ function writeProducts() {
         store: "store2", // get from database
         price: 16.97,
         ingredients: firebase.firestore.FieldValue.arrayUnion("sugar", "flour", "eggs", "butter", "vanilla", "baking powder", "salt", "cherries", "milk", "soy", "wheat", "xanthan gum", "artificial flavor", "artificial color"),
-        packaging: firebase.firestore.FieldValue.arrayUnion("polyethylene terephthalate(PET) plastic", "colored"),
+        packaging: firebase.firestore.FieldValue.arrayUnion("polyethylene terephthalate(PET) plastic"),
 
     });
     productRef.add({
