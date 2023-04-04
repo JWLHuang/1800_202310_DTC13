@@ -34,7 +34,8 @@
 }
 
 .navbar-custom {
-    height: 60px;
+    padding-top: 0px;
+    height: 70px;
 }
 
 .btn-primary {
