@@ -9,9 +9,18 @@
     font-family: 'Quicksand';
 }
 
+.bg-nav {
+    background-color: #B6C471 !important;
+    /* some secondary colour */
+}
+
 .bg-info {
     background-color: #cad7b9 !important;
     /* some secondary colour */
+}
+
+.nav-font{
+    font-size: 10;
 }
 
 .navbar-light .navbar-brand {
