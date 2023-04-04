@@ -136,6 +136,10 @@ footer a:hover {
 
 }
 
+.button_align{
+    text-align: left;
+}
+
 .username{
     color:#1B422C;
 }
