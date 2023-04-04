@@ -60,7 +60,7 @@ function displayproductInfo() {
                 //get the user name
                 var bookmarks = userDoc.data().bookmarks;
                 if (bookmarks.includes(docID)) {
-                    document.getElementById('save-' + docID).innerText = 'bookmark';
+                    document.getElementById('save-' + docID).innerText = 'favorite';
                 }
             })
         });
