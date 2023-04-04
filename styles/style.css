@@ -105,9 +105,8 @@ body {
 
 .indexFooter {
     background-color: #687169;
-    /* some secondary colour */
     color: white;
-    /* contrast to secondary colour */
+    padding: 1.5rem;
 }
 
 .indexHeading {
