@@ -19,6 +19,11 @@
     /* some secondary colour */
 }
 
+.bg-footer{
+    background-color: #81894F!important;
+    /* some secondary colour */
+}
+
 .nav-font{
     font-size: 10;
 }
@@ -26,6 +31,10 @@
 .navbar-light .navbar-brand {
     color: black;
     /* contrast to secondary colour */
+}
+
+.navbar-custom {
+    height: 60px;
 }
 
 .btn-primary {
@@ -58,7 +67,7 @@
 }
 
 body {
-    background-color: whitesmoke;
+    background-color:#B6C471;
     /* some primary colour */
 }
 
