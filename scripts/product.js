@@ -40,7 +40,6 @@ function displayproductInfo() {
             var productStore = doc.data().store;  // get value of the "store" key
             var productPrice = doc.data().price;  // get value of the "store" key
             var productIngredients = doc.data().ingredients;  // get value of the "details" key
-            var productPackaging = doc.data().packaging;  // get value of the "details" key
             var docID = doc.id;
             var docID = doc.id;
 
@@ -49,7 +48,6 @@ function displayproductInfo() {
             document.querySelector('.card-store').innerHTML = productStore;
             document.querySelector('.card-price').innerHTML = productPrice;
             document.querySelector('.card-ingredients').innerHTML = productIngredients;
-            document.querySelector('.card-packaging').innerHTML = productPackaging;
             let imgEvent = document.querySelector(".product-img");
             imgEvent.src = "./images/" + productCode + ".jpg";
 
