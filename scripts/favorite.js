@@ -51,7 +51,6 @@ function getBookmarks(user) {
                         var productName = doc.data().name; // get value of the "name" key
                         var productCode = doc.data().code; //get unique ID to each hike to be used for fetching right image
                         var productPrice = doc.data().price; //gets the price field
-                        var productIngredient = doc.data().ingredients; //gets the price field
 
                         // currentUser.get().then(userDoc => {
                         //     //get the user name
@@ -69,8 +68,8 @@ function getBookmarks(user) {
                         newcard.querySelector('.card-name').innerHTML = productName;
                         newcard.querySelector('.card-price').innerHTML = productPrice;
                         newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: NV01.jpg
-                        newcard.querySelector('.card-ingredient').innerHTML = productIngredient;
                         newcard.querySelector('a').href = "product.html?docID=" + ID;
+                        newcard.querySelector('a').target = "_parent";
                         newcard.querySelector('i').id = "save-" + ID;
 
                         //Finally, attach this new card to the gallery
