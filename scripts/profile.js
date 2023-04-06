@@ -10,17 +10,10 @@ function insertName() {
                 //get the user name
                 var userName = userDoc.data().name;
                 console.log(userName);
-                //$("#name-goes-here").text(userName); //jquery
-                // document.getElementById("name-goes-here").innerText = userName;
-                //method #1:  insert with html only
-                //document.getElementById("name-goes-here").innerText = user_Name;    //using javascript
-                //method #2:  insert using jquery
+
                 $(".name-goes-here").text(userName); //using jquery
             })
         }
-        // else {
-        //     // No user is signed in.
-        // }
     });
 }
 insertName(); //run the function
@@ -97,7 +90,6 @@ function defaultImage() {
 
 defaultImage();
 //call the function to run it 
-// populateUserInfo();
 
 function editUserInfo() {
     //Enable the form fields
@@ -183,23 +175,6 @@ function deleteUser() {
 
 //global variable to store the File Object reference
 
-// function chooseFileListener() {
-//     const fileInput = document.getElementById("mypic-input");   // pointer #1
-//     const image = document.getElementById("mypic-goes-here");   // pointer #2
-
-//     //attach listener to input file
-//     //when this file changes, do something
-//     fileInput.addEventListener('change', function (e) {
-
-//         //the change event returns a file "e.target.files[0]"
-//         ImageFile = e.target.files[0];
-//         var blob = URL.createObjectURL(ImageFile);
-
-//         //change the DOM img element source to point to this file
-//         image.src = blob;    //assign the "src" property of the "img" tag
-//     })
-// }
-// chooseFileListener();
 
 $('.featureBtn').click(function () {
     console.log("clicked");

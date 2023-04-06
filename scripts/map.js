@@ -4,26 +4,17 @@ function insertName() {
         if (user) { // Will verify who is logged in
             // Do something for the currently logged-in user here: 
             console.log(user.uid); //print the uid in the browser console
-            // console.log(user.displayName);  //print the user name in the browser console
             currentUser = db.collection("users").doc(user.uid); // will to to the firestore and go to the document of the user
             currentUser.get().then(userDoc => {
-                //get the user name
                 var userName = userDoc.data().name;
                 console.log(userName);
-                //$("#name-goes-here").text(userName); //jquery
-                // document.getElementById("name-goes-here").innerText = userName;
-                //method #1:  insert with html only
-                //document.getElementById("name-goes-here").innerText = user_Name;    //using javascript
-                //method #2:  insert using jquery
-                $(".name-goes-here").text(userName); //using jquery
+
+                $(".name-goes-here").text(userName); 
             })
         }
-        // else {
-        //     // No user is signed in.
-        // }
     });
 }
-insertName(); //run the function
+insertName();
 
 function showMap() {
     // Defines basic mapbox data
@@ -62,9 +53,6 @@ function showMap() {
                         // Coordinates
                         event_name = doc.data().name; // Event Name
                         preview = doc.data().details; // Text Preview
-                        // img = doc.data().posterurl; // Image
-                        // url = doc.data().link; // URL
-
                         // Pushes information into the features array
                         features.push({
                             'type': 'Feature',
@@ -252,8 +240,6 @@ function populateStoresByClosingHours() {
     $("#storeCardGroup").empty() //clears the storeCardGroup div once clicked from dropdown
     let storeCardTemplate = document.getElementById("storeCardTemplate");
     let storeCardGroup = document.getElementById("storeCardGroup");
-
-    // let params = new URL(window.location.href) //get the url from the searchbar
 
     db.collection("stores").orderBy("close", "desc").get()
         .then(allStores => {

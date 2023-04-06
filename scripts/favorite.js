@@ -51,15 +51,6 @@ function getBookmarks(user) {
                         var productName = doc.data().name; // get value of the "name" key
                         var productCode = doc.data().code; //get unique ID to each hike to be used for fetching right image
                         var productPrice = doc.data().price; //gets the price field
-
-                        // currentUser.get().then(userDoc => {
-                        //     //get the user name
-                        //     var bookmarks = userDoc.data().bookmarks;
-                        //     if (bookmarks.includes(docID)) {
-                        //         document.getElementById('save-' + docID).innerText = 'bookmark';
-                        //     }
-                        // })
-
                         //clone the new card
                         let newcard = newcardTemplate.content.cloneNode(true);
 

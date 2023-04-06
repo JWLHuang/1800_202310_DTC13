@@ -10,11 +10,6 @@ function insertName() {
                 //get the user name
                 var userName = userDoc.data().name;
                 console.log(userName);
-                //$("#name-goes-here").text(userName); //jquery
-                // document.getElementById("name-goes-here").innerText = userName;
-                //method #1:  insert with html only
-                //document.getElementById("name-goes-here").innerText = user_Name;    //using javascript
-                //method #2:  insert using jquery
                 $(".name-goes-here").text(userName); //using jquery
             })
         }
