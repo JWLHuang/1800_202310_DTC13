@@ -1,9 +1,8 @@
 # Project Title
+EcoKart
 
 ## 1. Project Description
-
-State your app in a nutshell, or one-sentence pitch. Give some elaboration on what the core features are.  
-This browser based web application to ...
+Our team, DTC13, is developing a web application to help consumers filter through products based on their preferences in order to make more environmentally-conscious decisions.
 
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
