@@ -58,6 +58,13 @@ Content of the project folder:
 ├── index.html               # landing HTML file, this is what users see when you come to url
 ├── login.html               # login HTML file, redirects to firebase login api
 ├── main.html                # main login landing HTML file, the first page that users see if they are logged in
+├── .firebaserc              # file for hosting on Firebase
+├── firebase.json            # file for hosting on Firebase
+├── firestore.indexes.json   # file for hosting with Firestore
+├── firestore.rules          # file for hosting with Firestore
+├── storage.rules            # file for hosting with Firestore
+├── 404.html                 # Error page, occurs when page is not found
+
 └── README.md
 
 It has the following subfolders and files:
