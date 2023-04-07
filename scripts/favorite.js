@@ -58,7 +58,7 @@ function getBookmarks(user) {
                         newcard.querySelector('div.card').id = `product-${ID}`;
                         newcard.querySelector('.card-name').innerHTML = productName;
                         newcard.querySelector('.card-price').innerHTML = productPrice;
-                        newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: NV01.jpg
+                        newcard.querySelector('.card-image').src = `../images/${productCode}.jpg`; //Example: NV01.jpg
                         newcard.querySelector('a').href = "product.html?docID=" + ID;
                         newcard.querySelector('a').target = "_parent";
                         newcard.querySelector('i').id = "save-" + ID;

@@ -216,7 +216,7 @@ function populateStores() {
                 var storeCode = doc.data().code;
 
                 let storeCard = storeCardTemplate.content.cloneNode(true);
-                storeCard.querySelector('.card-image').src = `./images/${storeCode}.jpeg`;
+                storeCard.querySelector('.card-image').src = `../images/${storeCode}.jpeg`;
                 storeCard.querySelector('.name').innerHTML = name;     //equiv getElementByClassName
                 storeCard.querySelector('.address').innerHTML = `Address: ${address}`;
                 storeCard.querySelector('.city').innerHTML = `City: ${city}`;
@@ -228,12 +228,6 @@ function populateStores() {
 }
 populateStores();
 // populateStores will immediately run on page load
-
-
-function test(){
-    console.log("dropdown clicked")
-}
-
 
 
 function populateStoresByClosingHours() {
@@ -254,7 +248,7 @@ function populateStoresByClosingHours() {
                 var storeCode = doc.data().code;
 
                 let storeCard = storeCardTemplate.content.cloneNode(true);
-                storeCard.querySelector('.card-image').src = `./images/${storeCode}.jpeg`;
+                storeCard.querySelector('.card-image').src = `../images/${storeCode}.jpeg`;
                 storeCard.querySelector('.name').innerHTML = name;     //equiv getElementByClassName
                 storeCard.querySelector('.address').innerHTML = `Address: ${address}`;
                 storeCard.querySelector('.city').innerHTML = `City: ${city}`;
@@ -286,7 +280,7 @@ function populateStoresByOpeningHours() {
                 var storeCode = doc.data().code;
 
                 let storeCard = storeCardTemplate.content.cloneNode(true);
-                storeCard.querySelector('.card-image').src = `./images/${storeCode}.jpeg`;
+                storeCard.querySelector('.card-image').src = `../images/${storeCode}.jpeg`;
                 storeCard.querySelector('.name').innerHTML = name;     //equiv getElementByClassName
                 storeCard.querySelector('.address').innerHTML = `Address: ${address}`;
                 storeCard.querySelector('.city').innerHTML = `City: ${city}`;

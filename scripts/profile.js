@@ -67,7 +67,7 @@ function userImage() {
 }
 
 
-function defaultImage() {
+function defaultImage() { //get the user picture from the firestore
     firebase.auth().onAuthStateChanged(user => {// method to check who is the user in firebase
         // Check if user is signed in:
         if (user) {
@@ -91,12 +91,12 @@ function defaultImage() {
 defaultImage();
 //call the function to run it 
 
-function editUserInfo() {
+function editUserInfo() {  
     //Enable the form fields
     document.getElementById('personalInfoFields').disabled = false;
 }
 
-function saveUserInfo() {
+function saveUserInfo() { //save the user info to the firestore
     firebase.auth().onAuthStateChanged(function (user) {
         var storageRef = firebase.storage().ref("images/" + user.uid + ".jpg");
         storageRef.put(ImageFile)
@@ -119,7 +119,6 @@ function saveUserInfo() {
         var userPhone = document.getElementById("phoneInput").value;
 
 
-        // console.log(userName, userEmail);
         console.log(userName, userBirthday, userAddress, userPhone);
         currentUser.update({
             name: userName,

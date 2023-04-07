@@ -44,7 +44,7 @@ function displayproductInfo() {
             document.querySelector('.card-price').innerHTML = productPrice;
             document.querySelector('.card-ingredients').innerHTML = productIngredients;
             let imgEvent = document.querySelector(".product-img");
-            imgEvent.src = "./images/" + productCode + ".jpg";
+            imgEvent.src = "../images/" + productCode + ".jpg";
 
             document.querySelector("i").id = "save-" + docID
             document.querySelector("i").onclick = () => updateBookmark(docID)

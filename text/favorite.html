@@ -36,7 +36,7 @@
     <!-- Google Icons (Material Design)-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Link to styles of your own -->
-    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="../styles/style.css">
 
 
 </head>
@@ -44,9 +44,29 @@
 <body>
     <!------------------------------>
     <!-- Your HTML Layout go here -->
-    <!------------------------------>
 
     <!-- main content -->
+    <div class="container">
+        <div class="container">
+            <div id="savedProductsCardGroup" class="row row-cols-auto">
+            </div>
+        </div>
+    </div>
+
+    <!-- Templates for general use, not displayed -->
+    <template id="savedCardTemplate">
+        <div class="card py-2 mx-2 bg-light" style="width: 10 rem">
+            <img class="card-image card-img-top" src=" ..." alt="...">
+            <div class="card-body">
+                <h5 class="card-name">Card name</h5>
+                <p class="card-price">placeholder</p>
+                <i class="material-icons">favorite</i>
+                <br>
+                <a class="btn btn-secondary card-href" id="read-more">Read more</a>
+            </div>
+        </div>
+    </template>
+
 
     <!------------------------------>
 
@@ -55,10 +75,10 @@
     <!---------------------------------------------->
 
     <!-- Link to scripts of your own -->
-    <script src="./scripts/firebase.js"></script>
-    <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/history.js"></script>
-    <script src="./scripts/script.js"></script>
+    <script src="../scripts/firebase.js"></script>
+    <script src="../scripts/skeleton.js"></script>
+    <script src="../scripts/favorite.js"></script>
+    <script src="../scripts/script.js"></script>
 
 </body>
 
