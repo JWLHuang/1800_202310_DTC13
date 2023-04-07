@@ -27,9 +27,11 @@ List technologies (with version numbers), API's, icons, fonts, images, media or 
 State what a user needs to do when they come to your project. How do others start using your code or application?
 Here are the steps ...
 
-- Read the README.md, look at ##7 to understand what each file does
-- ...
-- ...
+- Create an account with their email, name and password
+- Go to profile and add preferences to filter out
+- Return to main page to add things into their favorites or cart
+- Click "Read more" to get detailed information regarding the products
+- Click "Store Direction" to get redirected to map to display nearby stores
 
 ## 5. Known Bugs and Limitations
 
