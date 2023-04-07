@@ -7,7 +7,7 @@ Our team, DTC13, is developing a web application to help consumers filter throug
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
 - Hi, my name is Maddelin! I am excited about the project.
-- hey I m vivian
+- Hi , my name is Vivian. I am very excited to be working on this project.
 - Hi my name is Jacky, I'm so excited for this project course.
 
 ## 3. Technologies and Resources Used
@@ -67,6 +67,13 @@ It has the following subfolders and files:
     /store1.jpeg             # https://lh3.googleusercontent.com/p/AF1QipNsTiC-LItlMF5fRdk83Lt6JMQLRtdm0NFyI88=s680-w680-h510
     /store2.jpeg             # https://lh5.googleusercontent.com/p/AF1QipPhR0sJQOQNE_6_E1KBu1I7mQZVoc6Z7-N8dOws=w426-h240-k-no
     /store3.jpeg             # https://lh3.googleusercontent.com/p/AF1QipNrYcF-dvGHOXo3jxT7viJYzPua6fNMFnGtwrhg=s680-w680-h510
+    main_instruction.png     # desgined using Canva
+    welcomepage.png          # designed using Canva
+    cake.png                 # https://www.pexels.com/photo/white-icing-covered-cake-in-bokeh-photography-1721932/
+    coffeebeans.jpg          # https://www.pexels.com/photo/person-holding-brown-and-white-paper-bag-4829072/
+    strawberryjam.jpg        # https://www.pexels.com/photo/glass-jar-with-raspberry-jam-5590958/
+    statement.png            # designed using Canva
+
 ├── scripts                  # Folder for scripts
     /authentication.js       # Initialize the FirebaseUI Widget using Firebase
     /favorite.js             # loads product cards associated with logged-in users favorites
