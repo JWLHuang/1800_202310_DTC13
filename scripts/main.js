@@ -96,7 +96,7 @@ function displayCardsDynamically() {
                                 newcard.querySelector('.card-price').innerHTML = productPrice;
                                 // newcard.querySelector('.card-text').innerHTML = productIngredients;
                                 newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: cake.jpg
-                                newcard.querySelector('a').href = "product.html?docID=" + docID;
+                                newcard.querySelector('a').href = "./text/product.html?docID=" + docID;
 
                                 // sets icon in the product
                                 newcard.querySelector('i.cart').id = "save-" + docID;
@@ -142,7 +142,7 @@ function displayCardsDynamically() {
                         newcard.querySelector('.card-price').innerHTML = productPrice;
                         // newcard.querySelector('.card-text').innerHTML = productIngredients;
                         newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: cake.jpg
-                        newcard.querySelector('a').href = "product.html?docID=" + docID;
+                        newcard.querySelector('a').href = "./text/product.html?docID=" + docID;
 
                         // sets icon in the product
                         newcard.querySelector('i.cart').id = "save-" + docID;
@@ -205,7 +205,7 @@ function sortLowHigh() {
                                 newcard.querySelector('.card-name').innerHTML = productName;
                                 newcard.querySelector('.card-price').innerHTML = productPrice;
                                 newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: cake.jpg
-                                newcard.querySelector('a').href = "product.html?docID=" + docID;
+                                newcard.querySelector('a').href = "./text/product.html?docID=" + docID;
 
                                 // sets icon in the product
                                 newcard.querySelector('i.cart').id = "save-" + docID;
@@ -248,7 +248,7 @@ function sortLowHigh() {
                         newcard.querySelector('.card-price').innerHTML = productPrice;
                         // newcard.querySelector('.card-text').innerHTML = productIngredients;
                         newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: cake.jpg
-                        newcard.querySelector('a').href = "product.html?docID=" + docID;
+                        newcard.querySelector('a').href = "./text/product.html?docID=" + docID;
 
                         // sets icon in the product
                         newcard.querySelector('i.cart').id = "save-" + docID;
@@ -311,7 +311,7 @@ function sortHighLow() {
                                 newcard.querySelector('.card-price').innerHTML = productPrice;
                                 // newcard.querySelector('.card-text').innerHTML = productIngredients;
                                 newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: cake.jpg
-                                newcard.querySelector('a').href = "product.html?docID=" + docID;
+                                newcard.querySelector('a').href = "./text/product.html?docID=" + docID;
 
                                 // sets icon in the product
                                 newcard.querySelector('i.cart').id = "save-" + docID;
@@ -352,7 +352,7 @@ function sortHighLow() {
                         newcard.querySelector('.card-name').innerHTML = productName;
                         newcard.querySelector('.card-price').innerHTML = productPrice;
                         newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: cake.jpg
-                        newcard.querySelector('a').href = "product.html?docID=" + docID;
+                        newcard.querySelector('a').href = "./text/product.html?docID=" + docID;
 
                         // sets icon in the product
                         newcard.querySelector('i.cart').id = "save-" + docID;
