@@ -46,14 +46,18 @@ function displayproductInfo() {
             let imgEvent = document.querySelector(".product-img");
             imgEvent.src = "../images/" + productCode + ".jpg";
 
-            document.querySelector("i").id = "save-" + docID
-            document.querySelector("i").onclick = () => updateBookmark(docID)
+            document.getElementById("bookmark").onclick = () => updateBookmark(docID)
+            document.getElementById("shopCart").onclick = () => updateShopCart(docID)
 
             currentUser.get().then(userDoc => {
                 //get the user name
                 var bookmarks = userDoc.data().bookmarks;
                 if (bookmarks.includes(docID)) {
-                    document.getElementById('save-' + docID).innerText = 'favorite';
+                    document.getElementById('bookmark').innerText = 'favorite';
+                }
+                var shopCart = userDoc.data().shopCart;
+                if (shopCart.includes(docID)) {
+                    document.getElementById('shopCart').innerText = 'remove_shopping_cart';
                 }
             })
         });
@@ -61,24 +65,19 @@ function displayproductInfo() {
 displayproductInfo();
 
 function updateBookmark(id) {
-    console.log("bookmark clicked" +id);
     currentUser.get().then((userDoc) => {
         let bookmarksNow = userDoc.data().bookmarks;
         // console.log(bookmarksNow)
 
         // Check if bookmarksNow is defined and if this bookmark already exists in Firestore
         if (bookmarksNow && bookmarksNow.includes(id)) {
-            console.log(id);
             // If it does exist, then remove it
             currentUser
                 .update({
                     bookmarks: firebase.firestore.FieldValue.arrayRemove(id),
                 })
                 .then(function () {
-                    console.log("This bookmark is removed for" + currentUser);
-                    var iconID = "save-" + id;
-                    console.log(iconID);
-                    document.getElementById(iconID).innerText = "favorite_border";
+                    document.getElementById("bookmark").innerText = "favorite_border";
                 });
         } else {
             // If it does not exist, then add it
@@ -92,10 +91,38 @@ function updateBookmark(id) {
                     }
                 )
                 .then(function () {
-                    console.log("This bookmark is for" + currentUser);
-                    var iconID = "save-" + id;
-                    console.log(iconID);
-                    document.getElementById(iconID).innerText = "favorite";
+                    document.getElementById("bookmark").innerText = "favorite";
+                });
+        }
+    });
+}
+
+function updateShopCart(id) {
+    currentUser.get().then((userDoc) => {
+        let shopCartNow = userDoc.data().shopCart;
+        // Check if shopCartNow is defined and if this bookmark already exists in Firestore
+        if (shopCartNow && shopCartNow.includes(id)) {
+            // If it does exist, then remove it
+            currentUser
+                .update({
+                    shopCart: firebase.firestore.FieldValue.arrayRemove(id),
+                })
+                .then(function () {
+                    document.getElementById("shopCart").innerText = "add_shopping_cart";
+                });
+        } else {
+            // If it does not exist, then add it
+            currentUser
+                .set(
+                    {
+                        shopCart: firebase.firestore.FieldValue.arrayUnion(id),
+                    },
+                    {
+                        merge: true,
+                    }
+                )
+                .then(function () {
+                    document.getElementById("shopCart").innerText = "remove_shopping_cart";
                 });
         }
     });
