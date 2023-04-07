@@ -67,8 +67,35 @@ It has the following subfolders and files:
     /store2.jpeg             # https://lh5.googleusercontent.com/p/AF1QipPhR0sJQOQNE_6_E1KBu1I7mQZVoc6Z7-N8dOws=w426-h240-k-no
     /store3.jpeg             # https://lh3.googleusercontent.com/p/AF1QipNrYcF-dvGHOXo3jxT7viJYzPua6fNMFnGtwrhg=s680-w680-h510
 ├── scripts                  # Folder for scripts
-    /blah.js                 #
-├── styles                   # Folder for styles
-    /blah.css                #
+    /authentication.js       # Initialize the FirebaseUI Widget using Firebase
+    /favorite.js             # loads product cards associated with logged-in users favorites
+    /firebase.js             # contains firebase API keys
+    /history.js              # loads history of previous purchases (to be finished)
+    /main.js                 # loads main landing page functions after login
+    /map.js                  # loads function to display live location map, shows location of stores close to the user
+    /preference.js           # loads function list of preferences for user to filter out
+    /product.js              # loads function to display detailed product page of item selected by user
+    /profile.js              # loads functions for personal profile page, can change personal information and picture; access preference, favorites, history
+    /review.js               # creates entry form for reviews
+    /script.js               # initiates logout function
+    /shopping_cart.js        # loads product cards associated with items added by the logged-in users shopping cart
+    /skeleton.js             # loads the footer, navbar, and copyright in context-specific pages
 
+├── styles                   # Folder for styles
+    /style.css               # contains all the CSS styling consistent throughout the app
+
+├── text                     # Folder for html sub-files
+    /copyright.html          # display copyright for our project
+    /favorite.html           # display base page for favorites page
+    /footer_after_login.html # display the after-login version of footer
+    /footer_before_login.html# display the before-login version of footer
+    /history.html            # display history page
+    /map.html                # display map page
+    /nav_after_login.html    # display the after-login nav bar
+    /nav_before_login.html   # display the before-login nav bar
+    /preference.html         # display the preference page
+    /product.html            # display the product page
+    /profile.html            # display the profile page
+    /review.html             # display the review page
+    /shopping_cart.html      # display the shopping cart
 
