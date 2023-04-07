@@ -25,7 +25,7 @@ function insertName() {
     currentUser.get().then(userDoc => {
         var userName = userDoc.data().name;
         console.log(userName);
-        $(".name-goes-here").text(userName); //using jquery
+        $(".name-goes-here").text(userName);
         currentBookmarks = userDoc.data().bookmarks;
         currentShopCart = userDoc.data().shopCart;
         currentPreferences = userDoc.data().preferences;
@@ -46,7 +46,7 @@ function writeProducts() {
     productRef.add({
         code: "cake",
         name: "Cake",
-        store: "store2", // get from database
+        store: "store2",
         price: 16.97,
         ingredients: firebase.firestore.FieldValue.arrayUnion("sugar", "flour", "eggs", "butter", "vanilla", "baking powder", "salt", "cherries", "milk", "soy", "wheat", "xanthan gum", "artificial flavor", "artificial color", "polyethylene terephthalate(PET) plastic"),
 
@@ -54,7 +54,7 @@ function writeProducts() {
     productRef.add({
         code: "strawberryjam",
         name: "Strawberry jam",
-        store: "store3",  // get from database
+        store: "store3",
         price: 5.49,
         ingredients: firebase.firestore.FieldValue.arrayUnion("sugar", "strawberries", "concentrated lemon juice", "pectin", "glass", "paper", "nylon"),
 
@@ -79,14 +79,14 @@ function displayCardsDynamically() {
                         filterList.push(doc.data().code);
                     })
                     console.log(filterList)
-                    db.collection("products").where("code", "not-in", filterList).orderBy("code").orderBy("name").get()   //the collection called "products
+                    db.collection("products").where("code", "not-in", filterList).orderBy("code").orderBy("name").get()
                         .then(allproducts => {
-                            //var i = 1;  //Optional: if you want to have a unique ID for each product
-                            allproducts.forEach(doc => { //iterate thru each doc
-                                var productCode = doc.data().code;    //get unique ID to each product to be used for fetching right image
-                                var productName = doc.data().name;       // get value of the "name" key
-                                var productPrice = doc.data().price;  // get value of the "store" key
-                                // var productIngredients = doc.data().ingredients;  // get value of the "details" key
+
+                            allproducts.forEach(doc => {
+                                var productCode = doc.data().code;
+                                var productName = doc.data().name;
+                                var productPrice = doc.data().price;
+
                                 var docID = doc.id;
                                 let newcard = cardTemplate.content.cloneNode(true);
 
@@ -95,7 +95,7 @@ function displayCardsDynamically() {
                                 // newcard.querySelector('.card-store').innerHTML = productStore;
                                 newcard.querySelector('.card-price').innerHTML = productPrice;
                                 // newcard.querySelector('.card-text').innerHTML = productIngredients;
-                                newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: cake.jpg
+                                newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`;
                                 newcard.querySelector('a').href = "product.html?docID=" + docID;
 
                                 // sets icon in the product
@@ -125,14 +125,12 @@ function displayCardsDynamically() {
                         })
                 })
         } else {
-            db.collection("products").orderBy("name").get()   //the collection called "products"
+            db.collection("products").orderBy("name").get()
                 .then(allproducts => {
-                    allproducts.forEach(doc => { //iterate thru each doc
-                        var productCode = doc.data().code;    //get unique ID to each product to be used for fetching right image
-                        var productName = doc.data().name;       // get value of the "name" key
-                        // var productStore = doc.data().store;  // get value of the "store" key
-                        var productPrice = doc.data().price;  // get value of the "store" key
-                        // var productIngredients = doc.data().ingredients;  // get value of the "details" key
+                    allproducts.forEach(doc => {
+                        var productCode = doc.data().code;
+                        var productName = doc.data().name;
+                        var productPrice = doc.data().price;
                         var docID = doc.id;
                         let newcard = cardTemplate.content.cloneNode(true);
 
@@ -141,7 +139,7 @@ function displayCardsDynamically() {
                         // newcard.querySelector('.card-store').innerHTML = productStore;
                         newcard.querySelector('.card-price').innerHTML = productPrice;
                         // newcard.querySelector('.card-text').innerHTML = productIngredients;
-                        newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: cake.jpg
+                        newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`;
                         newcard.querySelector('a').href = "product.html?docID=" + docID;
 
                         // sets icon in the product
@@ -191,20 +189,19 @@ function sortLowHigh() {
                         filterList.push(doc.data().code);
                     })
                     console.log(filterList)
-                    db.collection("products").where("code", "not-in", filterList).orderBy("code", "desc").orderBy("price", "desc").get()   //the collection called "products
+                    db.collection("products").where("code", "not-in", filterList).orderBy("code", "desc").orderBy("price", "desc").get()
                         .then(allproducts => {
-                            allproducts.forEach(doc => { //iterate thru each doc
-                                var productCode = doc.data().code;    //get unique ID to each product to be used for fetching right image
-                                var productName = doc.data().name;       // get value of the "name" key
-                                var productPrice = doc.data().price;  // get value of the "store" key
-                                // var productIngredients = doc.data().ingredients;  // get value of the "details" key
+                            allproducts.forEach(doc => {
+                                var productCode = doc.data().code;
+                                var productName = doc.data().name;
+                                var productPrice = doc.data().price;
                                 var docID = doc.id;
                                 let newcard = cardTemplate.content.cloneNode(true);
 
                                 //update title and text and image
                                 newcard.querySelector('.card-name').innerHTML = productName;
                                 newcard.querySelector('.card-price').innerHTML = productPrice;
-                                newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: cake.jpg
+                                newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`;
                                 newcard.querySelector('a').href = "product.html?docID=" + docID;
 
                                 // sets icon in the product
@@ -233,12 +230,12 @@ function sortLowHigh() {
                         })
                 })
         } else {
-            db.collection("products").orderBy("price").get()   //the collection called "products"
+            db.collection("products").orderBy("price").get()
                 .then(allproducts => {
-                    allproducts.forEach(doc => { //iterate thru each doc
-                        var productCode = doc.data().code;    //get unique ID to each product to be used for fetching right image
-                        var productName = doc.data().name;       // get value of the "name" key
-                        var productPrice = doc.data().price;  // get value of the "store" key
+                    allproducts.forEach(doc => {
+                        var productCode = doc.data().code;
+                        var productName = doc.data().name;
+                        var productPrice = doc.data().price;
                         var docID = doc.id;
                         let newcard = cardTemplate.content.cloneNode(true);
 
@@ -247,7 +244,7 @@ function sortLowHigh() {
                         // newcard.querySelector('.card-store').innerHTML = productStore;
                         newcard.querySelector('.card-price').innerHTML = productPrice;
                         // newcard.querySelector('.card-text').innerHTML = productIngredients;
-                        newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: cake.jpg
+                        newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`;
                         newcard.querySelector('a').href = "product.html?docID=" + docID;
 
                         // sets icon in the product
@@ -295,13 +292,13 @@ function sortHighLow() {
                         filterList.push(doc.data().code);
                     })
                     console.log(filterList)
-                    db.collection("products").where("code", "not-in", filterList).orderBy("code").orderBy("price").get()   //the collection called "products
+                    db.collection("products").where("code", "not-in", filterList).orderBy("code").orderBy("price").get()
                         .then(allproducts => {
 
-                            allproducts.forEach(doc => { //iterate thru each doc
-                                var productCode = doc.data().code;    //get unique ID to each product to be used for fetching right image
-                                var productName = doc.data().name;       // get value of the "name" key
-                                var productPrice = doc.data().price;  // get value of the "store" key
+                            allproducts.forEach(doc => {
+                                var productCode = doc.data().code;
+                                var productName = doc.data().name;
+                                var productPrice = doc.data().price;
                                 var docID = doc.id;
                                 let newcard = cardTemplate.content.cloneNode(true);
 
@@ -310,7 +307,7 @@ function sortHighLow() {
                                 // newcard.querySelector('.card-store').innerHTML = productStore;
                                 newcard.querySelector('.card-price').innerHTML = productPrice;
                                 // newcard.querySelector('.card-text').innerHTML = productIngredients;
-                                newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: cake.jpg
+                                newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`;
                                 newcard.querySelector('a').href = "product.html?docID=" + docID;
 
                                 // sets icon in the product
@@ -339,19 +336,19 @@ function sortHighLow() {
                         })
                 })
         } else {
-            db.collection("products").orderBy("price", "desc").get()   //the collection called "products"
+            db.collection("products").orderBy("price", "desc").get()
                 .then(allproducts => {
-                    allproducts.forEach(doc => { //iterate thru each doc
-                        var productCode = doc.data().code;    //get unique ID to each product to be used for fetching right image
-                        var productName = doc.data().name;       // get value of the "name" key
-                        var productPrice = doc.data().price;  // get value of the "store" key
+                    allproducts.forEach(doc => {
+                        var productCode = doc.data().code;
+                        var productName = doc.data().name;
+                        var productPrice = doc.data().price;
                         var docID = doc.id;
                         let newcard = cardTemplate.content.cloneNode(true);
 
                         //update title and text and image
                         newcard.querySelector('.card-name').innerHTML = productName;
                         newcard.querySelector('.card-price').innerHTML = productPrice;
-                        newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`; //Example: cake.jpg
+                        newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`;
                         newcard.querySelector('a').href = "product.html?docID=" + docID;
 
                         // sets icon in the product
