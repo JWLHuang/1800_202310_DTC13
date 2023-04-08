@@ -2,14 +2,13 @@ function insertName() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if a user is signed in:
         if (user) { // Will verify who is logged in
-            // Do something for the currently logged-in user here: 
-            console.log(user.uid); //print the uid in the browser console
+            // Do something for the currently logged-in user here:
             currentUser = db.collection("users").doc(user.uid); // will to to the firestore and go to the document of the user
             currentUser.get().then(userDoc => {
                 var userName = userDoc.data().name;
                 console.log(userName);
 
-                $(".name-goes-here").text(userName); 
+                $(".name-goes-here").text(userName);
             })
         }
     });
@@ -79,7 +78,6 @@ function showMap() {
                     map.addLayer({
                         'id': 'places',
                         'type': 'symbol',
-                        // source: 'places',
                         'source': 'places',
                         'layout': {
                             'icon-image': 'eventpin', // Pin Icon
@@ -98,7 +96,7 @@ function showMap() {
                         while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
                             coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
                         }
-                        
+
 
                         new mapboxgl.Popup()
                             .setLngLat(coordinates)
@@ -200,9 +198,6 @@ function populateStores() {
     let storeCardTemplate = document.getElementById("storeCardTemplate");
     let storeCardGroup = document.getElementById("storeCardGroup");
 
-    // let params = new URL(window.location.href) //get the url from the searchbar
-
-
     db.collection("stores").orderBy("distance").get()
         .then(allStores => {
             stores = allStores.docs;
@@ -217,7 +212,7 @@ function populateStores() {
 
                 let storeCard = storeCardTemplate.content.cloneNode(true);
                 storeCard.querySelector('.card-image').src = `../images/${storeCode}.jpeg`;
-                storeCard.querySelector('.name').innerHTML = name;     //equiv getElementByClassName
+                storeCard.querySelector('.name').innerHTML = name;
                 storeCard.querySelector('.address').innerHTML = `Address: ${address}`;
                 storeCard.querySelector('.city').innerHTML = `City: ${city}`;
                 storeCard.querySelector('.distance').innerHTML = `Distance: ${distance}`;
@@ -249,7 +244,7 @@ function populateStoresByClosingHours() {
 
                 let storeCard = storeCardTemplate.content.cloneNode(true);
                 storeCard.querySelector('.card-image').src = `../images/${storeCode}.jpeg`;
-                storeCard.querySelector('.name').innerHTML = name;     //equiv getElementByClassName
+                storeCard.querySelector('.name').innerHTML = name
                 storeCard.querySelector('.address').innerHTML = `Address: ${address}`;
                 storeCard.querySelector('.city').innerHTML = `City: ${city}`;
                 storeCard.querySelector('.distance').innerHTML = `Distance: ${distance}`;
@@ -265,8 +260,6 @@ function populateStoresByOpeningHours() {
     let storeCardTemplate = document.getElementById("storeCardTemplate");
     let storeCardGroup = document.getElementById("storeCardGroup");
 
-    // let params = new URL(window.location.href) //get the url from the searchbar
-
     db.collection("stores").orderBy("open").get()
         .then(allStores => {
             stores = allStores.docs;
@@ -281,7 +274,7 @@ function populateStoresByOpeningHours() {
 
                 let storeCard = storeCardTemplate.content.cloneNode(true);
                 storeCard.querySelector('.card-image').src = `../images/${storeCode}.jpeg`;
-                storeCard.querySelector('.name').innerHTML = name;     //equiv getElementByClassName
+                storeCard.querySelector('.name').innerHTML = name;
                 storeCard.querySelector('.address').innerHTML = `Address: ${address}`;
                 storeCard.querySelector('.city').innerHTML = `City: ${city}`;
                 storeCard.querySelector('.distance').innerHTML = `Distance: ${distance}`;

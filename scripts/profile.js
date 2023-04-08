@@ -3,8 +3,6 @@ function insertName() {
         // Check if a user is signed in:
         if (user) { // Will verify who is logged in
             // Do something for the currently logged-in user here: 
-            console.log(user.uid); //print the uid in the browser console
-            // console.log(user.displayName);  //print the user name in the browser console
             currentUser = db.collection("users").doc(user.uid); // will to to the firestore and go to the document of the user
             currentUser.get().then(userDoc => {
                 //get the user name
@@ -91,7 +89,7 @@ function defaultImage() { //get the user picture from the firestore
 defaultImage();
 //call the function to run it 
 
-function editUserInfo() {  
+function editUserInfo() {
     //Enable the form fields
     document.getElementById('personalInfoFields').disabled = false;
 }
@@ -112,12 +110,10 @@ function saveUserInfo() { //save the user info to the firestore
 
                 })
             })
-        console.log("inside save UserInfo")
         var userName = document.getElementById("nameInput").value;
         var userBirthday = document.getElementById("birthdayInput").value;
         var userAddress = document.getElementById("addressInput").value;
         var userPhone = document.getElementById("phoneInput").value;
-
 
         console.log(userName, userBirthday, userAddress, userPhone);
         currentUser.update({
@@ -125,12 +121,10 @@ function saveUserInfo() { //save the user info to the firestore
             birthday: userBirthday,
             address: userAddress,
             phone: userPhone,
-
         })
             .then(() => {
                 console.log("Document successfully updated!");
             })
-
 
         document.getElementById('personalInfoFields').disabled = true;
 
@@ -148,7 +142,7 @@ function deleteUser() {
     firebase.auth().onAuthStateChanged(user => {
 
         // Double check! Usability Heuristics #5
-        var result = confirm("WARNING " +  ": Are you sure you want to DELETE your account!!");
+        var result = confirm("WARNING " + ": Are you sure you want to DELETE your account!!");
 
         // If confirmed, then go ahead
         if (result) {
@@ -172,19 +166,19 @@ function deleteUser() {
     })
 }
 
-//global variable to store the File Object reference
-
-
 $('.featureBtn').click(function () {
-    console.log("clicked");
+    // if the embed window is not the same as the button clicked, then change the embed window to the button clicked
     if (document.getElementById("embedWindow").getAttribute("src") == "preference.html") {
         $(".featureBtn").removeClass("border-bottom border-dark active_btn");
+        // add class for active button css
         $("#preference").addClass("border-bottom border-dark active_btn");
     } else if (document.getElementById("embedWindow").getAttribute("src") == "favorite.html") {
         $(".featureBtn").removeClass("border-bottom border-dark active_btn");
+        // add class for active button css
         $("#favorite").addClass("border-bottom border-dark active_btn");
     } else {
         $(".featureBtn").removeClass("border-bottom border-dark active_btn");
+        // add class for active button css
         $("#history").addClass("border-bottom border-dark active_btn");
     }
 })

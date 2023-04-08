@@ -14,6 +14,7 @@ var uiConfig = {
                     email: user.email,                         //with authenticated user's ID (user.uid)    
                     bookmarks: [],                    //Array for bookmarks
                     shopCart: [],                   //Array for shopping cart
+                    preferences: [],                   //Array for shopping cart
                 }).then(function () {
                     console.log("New user added to firestore");
                     window.location.assign("main.html");       //re-direct to main.html after signup

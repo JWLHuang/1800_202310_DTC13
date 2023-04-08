@@ -9,24 +9,20 @@ function doAll() {
     });
 }
 doAll();
+
 function insertName() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if a user is signed in:
         if (user) { // Will verify who is logged in
             // Do something for the currently logged-in user here: 
-            console.log(user.uid); //print the uid in the browser console
-            // console.log(user.displayName);  //print the user name in the browser console
             currentUser = db.collection("users").doc(user.uid); // will to to the firestore and go to the document of the user
             currentUser.get().then(userDoc => {
                 //get the user name
                 var userName = userDoc.data().name;
                 console.log(userName);
-                $(".name-goes-here").text(userName); //using jquery
+                $(".name-goes-here").text(userName);
             })
         }
-        // else {
-        //     // No user is signed in.
-        // }
     });
 }
 // insertName(); //run the function
@@ -48,9 +44,9 @@ function getBookmarks(user) {
                     .doc(ID)
                     .get()
                     .then(doc => {
-                        var productName = doc.data().name; // get value of the "name" key
-                        var productCode = doc.data().code; //get unique ID to each hike to be used for fetching right image
-                        var productPrice = doc.data().price; //gets the price field
+                        var productName = doc.data().name;
+                        var productCode = doc.data().code;
+                        var productPrice = doc.data().price;
                         //clone the new card
                         let newcard = newcardTemplate.content.cloneNode(true);
 
@@ -58,7 +54,7 @@ function getBookmarks(user) {
                         newcard.querySelector('div.card').id = `product-${ID}`;
                         newcard.querySelector('.card-name').innerHTML = productName;
                         newcard.querySelector('.card-price').innerHTML = productPrice;
-                        newcard.querySelector('.card-image').src = `../images/${productCode}.jpg`; //Example: NV01.jpg
+                        newcard.querySelector('.card-image').src = `../images/${productCode}.jpg`;
                         newcard.querySelector('a').href = "product.html?docID=" + ID;
                         newcard.querySelector('a').target = "_parent";
                         newcard.querySelector('i').id = "save-" + ID;
@@ -75,7 +71,6 @@ function getBookmarks(user) {
 function updateBookmark(id) {
     currentUser.get().then((userDoc) => {
         let bookmarksNow = userDoc.data().bookmarks;
-        // console.log(bookmarksNow)
 
         // Check if bookmarksNow is defined and if this bookmark already exists in Firestore
         if (bookmarksNow && bookmarksNow.includes(id)) {

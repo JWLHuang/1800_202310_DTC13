@@ -8,8 +8,6 @@ function doAll() {
         // Check if a user is signed in:
         if (user) {
             currentUser = db.collection("users").doc(user.uid);
-            console.log(user.uid);
-
             insertName();
             displayCardsDynamically();
         } else {
@@ -39,14 +37,14 @@ function writeProducts() {
     productRef.add({
         code: "coffebeans",
         name: "Coffee Beans",
-        store: "store1",
+        store: "Whole Foods Market",
         price: 10.95,
         ingredients: firebase.firestore.FieldValue.arrayUnion("coffee beans", "preservatives", "sugar", "paper"),
     });
     productRef.add({
         code: "cake",
         name: "Cake",
-        store: "store2",
+        store: "Walmart",
         price: 16.97,
         ingredients: firebase.firestore.FieldValue.arrayUnion("sugar", "flour", "eggs", "butter", "vanilla", "baking powder", "salt", "cherries", "milk", "soy", "wheat", "xanthan gum", "artificial flavor", "artificial color", "polyethylene terephthalate(PET) plastic"),
 
@@ -54,7 +52,7 @@ function writeProducts() {
     productRef.add({
         code: "strawberryjam",
         name: "Strawberry jam",
-        store: "store3",
+        store: "Real Canadian Superstore",
         price: 5.49,
         ingredients: firebase.firestore.FieldValue.arrayUnion("sugar", "strawberries", "concentrated lemon juice", "pectin", "glass", "paper", "nylon"),
 
@@ -65,13 +63,14 @@ function writeProducts() {
 
 
 function displayCardsDynamically() {
-    console.log("displayCardsDynamically clicked")
     $("#products-go-here").empty()
     let cardTemplate = document.getElementById("productCardTemplate");
     currentUser.get().then(userDoc => {
         var preferences = userDoc.data().preferences;
         console.log(preferences);
+        // check if the preference array is not empty
         if (preferences && preferences.length != 0) {
+            // if the product contains any of the avoided ingredients, add it to a list of avoided products
             db.collection("products").where("ingredients", "array-contains-any", preferences).get()
                 .then(avoidedProducts => {
                     filterList = [];
@@ -79,6 +78,7 @@ function displayCardsDynamically() {
                         filterList.push(doc.data().code);
                     })
                     console.log(filterList)
+                    // get all products that are not in the list of avoided products and sort them by name ascending
                     db.collection("products").where("code", "not-in", filterList).orderBy("code").orderBy("name").get()
                         .then(allproducts => {
 
@@ -90,11 +90,8 @@ function displayCardsDynamically() {
                                 var docID = doc.id;
                                 let newcard = cardTemplate.content.cloneNode(true);
 
-                                //update title and text and image
                                 newcard.querySelector('.card-name').innerHTML = productName;
-                                // newcard.querySelector('.card-store').innerHTML = productStore;
                                 newcard.querySelector('.card-price').innerHTML = productPrice;
-                                // newcard.querySelector('.card-text').innerHTML = productIngredients;
                                 newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`;
                                 newcard.querySelector('a').href = "./text/product.html?docID=" + docID;
 
@@ -125,6 +122,7 @@ function displayCardsDynamically() {
                         })
                 })
         } else {
+            // if the user has no preferences, display all products then sort them by name ascending
             db.collection("products").orderBy("name").get()
                 .then(allproducts => {
                     allproducts.forEach(doc => {
@@ -136,9 +134,7 @@ function displayCardsDynamically() {
 
                         //update title and text and image
                         newcard.querySelector('.card-name').innerHTML = productName;
-                        // newcard.querySelector('.card-store').innerHTML = productStore;
                         newcard.querySelector('.card-price').innerHTML = productPrice;
-                        // newcard.querySelector('.card-text').innerHTML = productIngredients;
                         newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`;
                         newcard.querySelector('a').href = "./text/product.html?docID=" + docID;
 
@@ -175,13 +171,14 @@ function displayCardsDynamically() {
 
 
 function sortLowHigh() {
-    console.log("sortLowHigh clicked")
     $("#products-go-here").empty()
     let cardTemplate = document.getElementById("productCardTemplate");
     currentUser.get().then(userDoc => {
         var preferences = userDoc.data().preferences;
         console.log(preferences);
+        // check if the preference array is not empty
         if (preferences && preferences.length != 0) {
+            // if the product contains any of the avoided ingredients, add it to a list of avoided products
             db.collection("products").where("ingredients", "array-contains-any", preferences).get()
                 .then(avoidedProducts => {
                     filterList = [];
@@ -189,6 +186,7 @@ function sortLowHigh() {
                         filterList.push(doc.data().code);
                     })
                     console.log(filterList)
+                    // get all products that are not in the list of avoided products then order by price descending
                     db.collection("products").where("code", "not-in", filterList).orderBy("code", "desc").orderBy("price", "desc").get()
                         .then(allproducts => {
                             allproducts.forEach(doc => {
@@ -230,6 +228,7 @@ function sortLowHigh() {
                         })
                 })
         } else {
+            // if the user has no preferences, display all products then order by price ascending
             db.collection("products").orderBy("price").get()
                 .then(allproducts => {
                     allproducts.forEach(doc => {
@@ -241,9 +240,7 @@ function sortLowHigh() {
 
                         //update title and text and image
                         newcard.querySelector('.card-name').innerHTML = productName;
-                        // newcard.querySelector('.card-store').innerHTML = productStore;
                         newcard.querySelector('.card-price').innerHTML = productPrice;
-                        // newcard.querySelector('.card-text').innerHTML = productIngredients;
                         newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`;
                         newcard.querySelector('a').href = "./text/product.html?docID=" + docID;
 
@@ -278,13 +275,14 @@ function sortLowHigh() {
 }
 
 function sortHighLow() {
-    console.log("sortHighLow clicked")
     $("#products-go-here").empty()
     let cardTemplate = document.getElementById("productCardTemplate");
     currentUser.get().then(userDoc => {
         var preferences = userDoc.data().preferences;
         console.log(preferences);
+        // check if the preference array is not empty
         if (preferences && preferences.length != 0) {
+            // if the product contains any of the avoided ingredients, add it to a list of avoided products
             db.collection("products").where("ingredients", "array-contains-any", preferences).get()
                 .then(avoidedProducts => {
                     filterList = [];
@@ -292,6 +290,7 @@ function sortHighLow() {
                         filterList.push(doc.data().code);
                     })
                     console.log(filterList)
+                    // get all products that are not in the list of avoided products then order by price descending
                     db.collection("products").where("code", "not-in", filterList).orderBy("code").orderBy("price").get()
                         .then(allproducts => {
 
@@ -304,9 +303,7 @@ function sortHighLow() {
 
                                 //update title and text and image
                                 newcard.querySelector('.card-name').innerHTML = productName;
-                                // newcard.querySelector('.card-store').innerHTML = productStore;
                                 newcard.querySelector('.card-price').innerHTML = productPrice;
-                                // newcard.querySelector('.card-text').innerHTML = productIngredients;
                                 newcard.querySelector('.card-image').src = `./images/${productCode}.jpg`;
                                 newcard.querySelector('a').href = "./text/product.html?docID=" + docID;
 
@@ -336,6 +333,7 @@ function sortHighLow() {
                         })
                 })
         } else {
+            // if the user has no preferences, display all products then order by price descending
             db.collection("products").orderBy("price", "desc").get()
                 .then(allproducts => {
                     allproducts.forEach(doc => {

@@ -2,23 +2,20 @@ function insertName() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if a user is signed in:
         if (user) { // Will verify who is logged in
-            // Do something for the currently logged-in user here: 
-            console.log(user.uid); //print the uid in the browser console
-            // console.log(user.displayName);  //print the user name in the browser console
+            // Do something for the currently logged-in user here:
             currentUser = db.collection("users").doc(user.uid); // will to to the firestore and go to the document of the user
             currentUser.get().then(userDoc => {
                 //get the user name
                 var userName = userDoc.data().name;
                 console.log(userName);
-                $(".name-goes-here").text(userName); //using jquery
+                $(".name-goes-here").text(userName);
             })
         }
     });
 }
 insertName(); //run the function
 
-var productID = localStorage.getItem("productDocID");    //visible to all functions on this page
-console.log(productID);
+var productID = localStorage.getItem("productDocID");
 
 function getProductName(id) {
     db.collection("products")
@@ -26,7 +23,7 @@ function getProductName(id) {
         .get()
         .then(doc => {
             var productName = doc.data().name;
-            document.getElementById("productName").innerHTML = productName; // points to the <h1> element
+            document.getElementById("productName").innerHTML = productName
         });
 }
 
@@ -36,7 +33,7 @@ function showSliderValue() {
     var slider = document.getElementById("rebuyRatingSlider");
     var output = document.getElementById("rebuyRatingValue");
     output.innerHTML = slider.value; // Display the default slider value
-    
+
     // Update the current slider value (each time you drag the slider handle)
     slider.oninput = function () {
         output.innerHTML = this.value;
@@ -46,14 +43,12 @@ function showSliderValue() {
 showSliderValue();
 
 function writeReview() {
-    console.log("inside write review")
     let Title = document.getElementById("title").value;
     let ProductRating = document.getElementById("productRating").value;
     let EnvironmentRating = document.getElementById("environmentRating").value;
     let HealthRating = document.getElementById("healthRating").value;
     let Description = document.getElementById("description").value;
     let RebuyRating = document.getElementById("rebuyRatingSlider").value;
-    console.log(Title, ProductRating, EnvironmentRating, HealthRating, Description, RebuyRating);
 
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
@@ -62,7 +57,6 @@ function writeReview() {
             //get the document for current user.
             currentUser.get()
                 .then(userDoc => {
-                    // var userEmail = userDoc.data().email;
                     db.collection("reviews").add({
                         productID: productID,
                         userID: userID,
@@ -79,7 +73,7 @@ function writeReview() {
                 })
         } else {
             console.log("No user is signed in");
-            window.location.href = 'index.html'; // redirect to login page
+            window.location.href = 'index.html';
         }
     });
 }

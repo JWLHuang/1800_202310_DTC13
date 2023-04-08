@@ -22,7 +22,7 @@ function insertName() {
     currentUser.get().then(userDoc => {
         var userName = userDoc.data().name;
         console.log(userName);
-        $(".name-goes-here").text(userName); //using jquery
+        $(".name-goes-here").text(userName);
     })
 }
 // insertName(); //run the function
@@ -82,7 +82,6 @@ function displayPreferences(collection) {
 }
 
 function updatePreferences(preference) {
-    console.log("clicked!")
     currentUser.get().then(userDoc => {
         var preferences = userDoc.data().preferences;
         if (preferences && preferences.includes(preference)) {

@@ -52,6 +52,9 @@ Here are the steps ...
 Here are some known bugs:
 
 - History page is currently not active
+- Users are not able to delete their own product review
+- Users are not able to delete their profile picture
+- Maps are not currently tied to available products
 
 ## 6. Features for Future
 
